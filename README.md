@@ -27,8 +27,7 @@ Open `CaF_MOT_Camera_Comparison.nb` in Mathematica / Wolfram 14.x. Everything is
 | `GenerateCaFComparisonNotebook.wls` | Builds and evaluates the notebook from the `.wl`, runs the tests, exports the CSV and figures. |
 | `regenerate.sh` | Finds `wolframscript` and runs the generator. |
 | `CaF_MOT_Camera_Comparison.nb` | Generated notebook — never edit by hand, it is overwritten. |
-| `CaF_MOT_Camera_Thresholds.csv` | Molecules for SNR = 3 / 10 and saturation molecule number per camera, mode and binning. |
-| `verification/*.png` | Every key figure, for checking without opening Mathematica. |
+| `CaF_MOT_Camera_Thresholds.csv`, `verification/*.png` | Produced locally by the generator (thresholds table; every key figure as PNG). Not tracked in git. |
 
 ## Change the physics
 
