@@ -1,44 +1,99 @@
-# CaF MOT Camera Comparison
+# MOTCamSimulator
 
-Analytical noise model, benchmark plots and an interactive dashboard for imaging CaF MOT fluorescence (606 nm) with five candidate cameras.
+Analytical noise model, benchmark plots and an interactive dashboard for imaging CaF MOT fluorescence (606 nm) with seven candidate cameras: Hamamatsu ORCA-Quest 2 and ORCA-R2, Thorlabs Zelux CS165MU, Teledyne Kinetix, Andor iXon Ultra 888, Andor CB2 High Res and CB2 High Speed 7.1F.
+
+## Quick start
+
+Open `CaF_MOT_Camera_Comparison.nb` in Mathematica / Wolfram 14.x. Everything is pre-evaluated; click **Enable** when asked about dynamic content to activate the dashboard.
+
+| Section | What it answers |
+|---|---|
+| 1 Noise engine | Optics, cloud, camera database, SNR functions |
+| 2 Primary benchmark | Integrated SNR vs molecule number for every camera and binning; where each saturates |
+| 3 SNR definitions | Peak-pixel vs top-hat vs matched-filter SNR; precision on number and on cloud width |
+| 4 Visibility | Molecules needed before the cloud shows in a single raw frame, vs binning |
+| 5 Resolution | Object-space pixel size and resolution elements across the cloud, vs binning |
+| 6 Dashboard | Interactive synthetic image, cross-section fit and metrics card |
+| 7 Thresholds | Table + CSV of molecules for SNR = 3 / 10 per camera, readout mode and binning |
+| 8 Tests | The verification suite |
+
+**Dashboard controls**: camera, readout mode, binning (only the bins the camera supports), log10 molecules, scattering rate, exposure, background multiplier, noise seed. The image is one random realisation chosen by the seed — keep it fixed while changing other controls, step it to "take another shot". The metrics card is analytic except the rows marked "from frame" and the fitted width. Sliders update on release.
 
 ## Files
 
 | File | Purpose |
 |---|---|
-| `CaFCameraNoise.wl` | All physics, camera database, plots, dashboard and verification tests, in Wolfram package-cell format. `Get`-able standalone, and the front end can open it directly as a notebook. |
-| `GenerateCaFComparisonNotebook.wls` | Generator: parses the `.wl`, evaluates every Input cell in the kernel, runs the `VerificationTest` suite, writes the notebook through the headless front end, rasterises verification figures and exports the threshold CSV. Exit code 1 on any failed test. |
-| `CaF_MOT_Camera_Comparison.nb` | Generated, fully evaluated notebook (Input + Output cells; the `Manipulate` dashboard carries its own definitions via `SaveDefinitions`). |
-| `CaF_MOT_Camera_Thresholds.csv` | Minimum molecule number (and equivalent photons) for SNR = 3 and 10, plus the saturation molecule number, per camera, readout mode and binning. |
-| `verification/*.png` | Rasterised figures produced by the last generator run. |
+| `CaFCameraNoise.wl` | The model: physics, camera database, plots, dashboard and tests, in Wolfram package-cell format. **Edit this.** |
+| `GenerateCaFComparisonNotebook.wls` | Builds and evaluates the notebook from the `.wl`, runs the tests, exports the CSV and figures. |
+| `regenerate.sh` | Finds `wolframscript` and runs the generator. |
+| `CaF_MOT_Camera_Comparison.nb` | Generated notebook — never edit by hand, it is overwritten. |
+| `CaF_MOT_Camera_Thresholds.csv` | Molecules for SNR = 3 / 10 and saturation molecule number per camera, mode and binning. |
+| `verification/*.png` | Every key figure, for checking without opening Mathematica. |
 
-## Regenerating
+## Change the physics
 
-Quick start for users is in [HOWTO.md](HOWTO.md). The one-liner is `./regenerate.sh`, which locates `wolframscript` and runs the generator.
+All inputs are top-level parameters in `CaFCameraNoise.wl`, Section 1:
 
-If `wolframscript` is not on your `$PATH`, call the one inside the application bundle directly:
+| Parameter | Section | Default | Meaning |
+|---|---|---|---|
+| `cloudFWHM` | 1.2 | 2.8 mm | measured MOT FWHM (object space); σ, aperture and fields of view derive from it |
+| `scatteringRate` | 1.2 | 1e6 /s | photons scattered per molecule per second — **assumed, replace with the measured value** |
+| `baselineScatterRate`, `backgroundMultiplierDefault` | 1.2 | 39 /s/px, 4 | laser-scatter background per 6.5 µm pixel — **unverified** |
+| `exposureTimeNominal` | 1.2 | 20 ms | exposure for all benchmark plots and tables |
+| `imagingLensRadius`, `imagingLensEFL` | 1.1 | 20 mm, 28.6 mm | second lens (Comar 29 AF 40); sets the limiting stop and the magnification |
+| `viewportClearRadius` | 1.1 | Infinity | set to the viewport semi-diameter if it clips before the lenses |
+| `workingPointMolecules` | 3 | 1e4 | molecule number used in the summary tables |
+
+Then regenerate:
 
 ```bash
-/Applications/Wolfram.app/Contents/MacOS/wolframscript -file "GenerateCaFComparisonNotebook.wls"
+./regenerate.sh
 ```
 
-Or add it to your path once (`~/.zshrc`):
+(~30 s; equivalent to `wolframscript -file GenerateCaFComparisonNotebook.wls`, the script also looks inside `/Applications/Wolfram.app` and `/Applications/Mathematica.app` if `wolframscript` is not on your PATH). It rebuilds the notebook, CSV and figures and prints PASS/FAIL for the 41 verification tests; exit code 1 if any fail.
 
-```bash
-export PATH="/Applications/Wolfram.app/Contents/MacOS:$PATH"
+## Add a camera
+
+Append an entry to `cameraDatabase` (Section 1.3). All keys are required:
+
+```mathematica
+"Vendor Model (type)" -> <|
+   "ShortName" -> "Model", "Type" -> "sCMOS",
+   "PixelsX" -> 2048, "PixelsY" -> 2048, "PixelPitch" -> 6.5,     (* um *)
+   "QE" -> 0.80,                                                     (* at 606 nm, not the peak *)
+   "ReadNoiseRMS" -> 1.0,                                            (* e- rms, primary mode *)
+   "ReadNoiseModes" -> <|"Mode name" -> 1.0|>,                       (* every quoted mode *)
+   "DarkCurrent" -> 0.1,                                             (* e-/pixel/s at operating temperature *)
+   "FullWell" -> 30000,                                              (* e-, only used for saturation markers *)
+   "BinningType" -> "Software",                                      (* label only *)
+   "HardwareBinLimit" -> 1,      (* 1 = digital binning only, Infinity = on-chip at every bin (CCD/EMCCD), 2 = on-chip 2x2 then digital *)
+   "SupportedBins" -> {1, 2, 4, 8},
+   "ENF" -> 1.0,                                                     (* Sqrt[2] for EMCCD with gain *)
+   "Notes" -> "Where the numbers came from."|>
 ```
 
-To edit the model, change `CaFCameraNoise.wl` and re-run the generator; never edit the `.nb` by hand (it is overwritten).
+Read the QE off the vendor's curve at 606 nm — the headline peak is usually at 500–550 nm and can be 10 points higher. Regenerate; the camera appears in every plot, table and the dashboard.
 
-## Notes on the model
+## One-off calculations
 
-- **Cloud size**: the primary input is the measured **FWHM = 2.8 mm** (σ = 1.189 mm, 1/e² diameter 4.76 mm). The 2σ integration aperture is 2.378 mm in radius; the number of pixels it covers sets the integrated read-noise floor, which makes the cloud size the single biggest lever on the low-molecule SNR. The synthetic-frame and estimator fields of view scale with the cloud automatically.
-- **Optical relay**: Thorlabs LA1401-A collector (2", EFL 59.8 mm) at BFL 49.1 mm + Comar 29 AF 40 achromat (40 mm dia, EFL 28.6 mm). The Comar is the limiting stop, so the geometric efficiency is 3.69 %, not the 5.59 % of the unvignetted 2" lens (`viewportClearRadius` models any tighter upstream stop). The relay is **not** 1:1: M = f2/f1 = 0.478, so a pixel of pitch p samples p/M at the MOT and the cloud image is demagnified 2.1×. Cloud geometry is kept in object space; background and dark electrons use the physical sensor pixel area (they do not scale with M).
-- **Three SNR definitions** are computed (Section 1.5, compared in Section 3): peak-pixel, flat top-hat over the 2σ aperture, and the matched filter (inverse-variance, profile-weighted), whose variance is the Cramér–Rao bound on molecule number. Section 3 also gives δN/N and δσ/σ, the figures of merit for number and for time-of-flight thermometry.
-- **Visibility (Section 4)** is kept separate from precision: `peakPixelSNR` and `visibilityMolecules` give the SNR of the brightest superpixel and the molecule number at which the cloud becomes unmistakable in a raw single shot (peak-pixel SNR = 5). This is the one figure of merit that software binning improves — in proportion to b, for every camera.
-- All benchmark axes and tables are in **number of molecules in the MOT** (10 to 10^6). Internally `nSig = nMol * scatteringRate * tExp * etaGeom * T * fAperture` is the number of signal photons arriving inside the 0.75 mm integration aperture (2 sigma of the cloud, 86.5 % of the fluorescence), about 920 photons per molecule at 20 ms; signal electrons are `nSig * QE`. The scattering rate (default 1e6 photons/s per molecule) is a dashboard control.
-- Filled markers on the benchmark curves show where the peak superpixel reaches the full-well capacity at 20 ms  — with the 2.8 mm cloud there is ample headroom: saturation at 20 ms arrives at 1.1–3.9 × 10⁶ molecules unbinned.
-- **Binning rule**: `sigmaReadEff = sigmaRead * b / Min[b, HardwareBinLimit]`, with `HardwareBinLimit` = 1 for digital-only sensors (Quest 2, Zelux, Kinetix), ∞ for on-chip binning at every bin (ORCA-R2, iXon) and 2 for on-chip 2×2 followed by digital summing (Andor CB2). QE values are at 606 nm, read off the vendor curves where necessary (CB2: 62 % High Res, 68 % High Speed).
-- Software binning sums `b^2` independent reads, so the aperture-integrated read-noise variance is independent of `b`; the 1x1/2x2/4x4 SNR curves of digitally binned cameras coincide. Only on-chip binning lowers the floor.
-- The log-log slope is 1 wherever a signal-independent term (read noise **or** laser scatter **or** dark current) dominates, and 1/2 once the signal shot noise dominates; the regime table in Section 2 reports which floor term dominates for each camera.
-- The default scattering rate of 1e6 photons/s per molecule is an assumption — replace it with the measured value; it scales every molecule axis linearly. The Kinetix and iXon full-well values are nominal and only affect the saturation markers.
+```mathematica
+Get["CaFCameraNoise.wl"];
+cam = cameraDatabase["Thorlabs Zelux CS165MU (Compact CMOS)"];
+
+integratedSNRMolecules[cam, 4, 10^4]        (* top-hat SNR, 4x4 bin, 1e4 molecules, nominal conditions *)
+peakPixelSNR[cam, 4, 10^4]                  (* single-shot visibility *)
+visibilityMolecules[cam, 4, 5]              (* molecules needed for peak-pixel SNR = 5 *)
+minimumMolecules[cam, 1, 3]                 (* molecules for integrated SNR = 3 *)
+snrEstimators[cam, 1, 10^4]                 (* peak / top-hat / matched-filter SNR, dN/N, dSigma/Sigma *)
+noiseFloorBreakdown[cam, 1, 0.02, 4., 4.]    (* read vs scatter vs dark variance, dominant term *)
+```
+
+Every function has a long form with explicit exposure (s), background multiplier, read noise (e⁻) and scattering rate (/s); see Sections 1.4–1.5 of the `.wl`.
+
+## How the model works
+
+- **Signal**: `nSig = nMol × scatteringRate × tExp × etaGeom × T × fAperture` photons arrive inside the 2σ integration aperture (86.5 % of the cloud's fluorescence); signal electrons are `nSig × QE`. All axes are in molecules (10 to 10⁶).
+- **Optics**: LA1401-A collector (2", EFL 59.8 mm) at its BFL of 49.1 mm, Comar 29 AF 40 imaging lens (40 mm, EFL 28.6 mm). The Comar is the limiting stop, giving a geometric efficiency of 3.69 % (5.59 % would be the unvignetted 2" lens). Magnification M = f2/f1 = 0.478: a pixel of pitch p samples p/M at the MOT. Cloud geometry is kept in object space; background and dark electrons use the physical sensor pixel area and do not scale with M.
+- **Noise per superpixel**: shot noise on signal, background and dark electrons, plus read noise `sigmaRead × b / Min[b, HardwareBinLimit]`; a factor 2 on all signal-independent terms accounts for subtracting an identical off-target reference. Software binning sums `b²` independent reads, so it leaves the aperture-integrated read noise unchanged — only on-chip binning lowers it. It does raise the peak-pixel SNR in proportion to b, which is what matters for seeing the cloud in a single shot.
+- **Three SNRs**: peak-pixel (visibility), top-hat over the 2σ aperture (the conventional integrated SNR), and the matched filter (inverse-variance, profile-weighted), whose variance is the Cramér–Rao bound on the molecule number. δN/N and δσ/σ follow from the Fisher information.
+- **Regimes**: the log-log slope is 1 where a signal-independent term (read noise, laser scatter or dark current) dominates and ½ once signal shot noise dominates; the regime table in Section 2 says which term sets the floor for each camera. Filled markers show where the peak superpixel reaches full well.
