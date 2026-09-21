@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       154,          7]
-NotebookDataLength[   2651042,      53408]
-NotebookOptionsPosition[   2641102,      53239]
-NotebookOutlinePosition[   2641729,      53260]
-CellTagsIndexPosition[   2641686,      53257]
+NotebookDataLength[   2650578,      53395]
+NotebookOptionsPosition[   2640638,      53226]
+NotebookOutlinePosition[   2641265,      53247]
+CellTagsIndexPosition[   2641222,      53244]
 WindowTitle->CaF MOT Camera Comparison
 WindowFrame->Normal*)
 
@@ -21,7 +21,7 @@ WindowFrame->Normal*)
 Notebook[{
 
 Cell[CellGroupData[{
-Cell["CaF MOT Fluorescence Imaging: Camera Comparison", "Title",ExpressionUUID->"17f8cde3-58ee-499d-88a1-1973e5f1e478"],
+Cell["CaF MOT Fluorescence Imaging: Camera Comparison", "Title",ExpressionUUID->"77d44e13-ad3e-4b78-9413-0f889da3e9a6"],
 
 Cell["\<\
 Analytical noise model and interactive dashboard for imaging the fluorescence \
@@ -30,24 +30,24 @@ five candidate cameras. The notebook is generated and evaluated automatically \
 by GenerateCaFComparisonNotebook.wls from the source file CaFCameraNoise.wl. \
 Every user-defined symbol is lowerCamelCase; underscores appear only in \
 Blank[] patterns.\
-\>", "Text",ExpressionUUID->"9f99d42d-a40e-4208-ad5a-2c802eb2acf4"],
+\>", "Text",ExpressionUUID->"f3ac12f9-ea5c-41ee-afd5-fe7a81ced77d"],
 
 Cell["\<\
 Units convention: lengths in mm unless stated, pixel pitches in micrometres, \
 times in seconds, charges in electrons, photon fluxes in photons per second \
 per square micrometre at the sensor.\
-\>", "Text",ExpressionUUID->"a7959c5d-eb55-4447-847d-cef4c6d7f2ff"],
+\>", "Text",ExpressionUUID->"4c756e78-77c5-44d9-9238-90d827b4c549"],
 
 Cell[CellGroupData[{
 
-Cell["1. Analytical Noise Engine", "Section",ExpressionUUID->"e0b1f142-1bc7-47c7-b4bb-07a65b3d3fb9"],
+Cell["1. Analytical Noise Engine", "Section",ExpressionUUID->"c83f6117-c0be-4f0c-9551-9240e503c030"],
 
 Cell[CellGroupData[{
 
 Cell["\<\
 1.1 Optical relay geometry (Thorlabs LA1401-A collector + Comar 29 AF 40 \
 imaging lens)\
-\>", "Subsection",ExpressionUUID->"683437a6-b58c-4dd9-a651-a1e50f3ce8ec"],
+\>", "Subsection",ExpressionUUID->"babf9ae6-1253-4c23-8171-110f62d37bc7"],
 
 Cell["\<\
 The MOT sits at the back focal length of the plano-convex singlet (flat side \
@@ -55,11 +55,11 @@ facing the MOT), so the fluorescence leaves the collector collimated with a \
 beam diameter equal to the illuminated part of that lens (up to 50.8 mm). The \
 second lens, a Comar 29 AF 40 achromat (40 mm diameter, EFL 28.6 mm), focuses \
 the beam onto the sensor.\
-\>", "Text",ExpressionUUID->"6884b5fa-96d9-49c4-96d1-c2aa4e928b33"],
+\>", "Text",ExpressionUUID->"9d6bfb9d-a349-49ee-8b27-8939f0773ea7"],
 
 Cell["\<\
 Two consequences of the real relay, both of which matter for the SNR:\
-\>", "Text",ExpressionUUID->"54d29190-89ac-43c3-bfe5-faa9f61f46f6"],
+\>", "Text",ExpressionUUID->"d5b641fa-03a6-47c7-a293-c1403c68e111"],
 
 Cell["\<\
 (i) Vignetting. The collimated beam is clipped by whichever element has the \
@@ -69,17 +69,17 @@ at the working distance, so the geometric efficiency drops from 5.59% \
 (unvignetted 2 inch) to 3.69%. Any smaller restriction upstream (a viewport, \
 a re-entrant window) would reduce it further: set viewportClearRadius to \
 model it.\
-\>", "Text",ExpressionUUID->"12285d09-4ef7-4bfa-bb8e-40149dc75824"],
+\>", "Text",ExpressionUUID->"a2c16712-a175-4690-837b-b68cfffae9e6"],
 
 Cell["\<\
 (ii) Magnification. With two lenses in an infinity relay the magnification is \
-M = f2/f1 = 28.6/59.8 = 0.478, so the MOT image is demagnified rather than \
-1:1. This has no effect on the total number of collected photons, but it \
-concentrates them onto 1/M^2 = 4.4 times fewer pixels, which lowers the \
-integrated read-noise and dark-current floor by the same factor, raises the \
-peak electrons per pixel (earlier saturation) and coarsens the object-space \
-sampling to pixelPitch/M.\
-\>", "Text",ExpressionUUID->"e9ea0f01-db0f-4a83-938b-8a8e6643fb9a"],
+M = f2/f1 = 28.6/59.8 = 0.478, so the MOT image is demagnified. This has no \
+effect on the total number of collected photons, but it concentrates them \
+onto 1/M^2 = 4.4 times fewer pixels, which lowers the integrated read-noise \
+and dark-current floor by the same factor, raises the peak electrons per \
+pixel (earlier saturation) and coarsens the object-space sampling to \
+pixelPitch/M.\
+\>", "Text",ExpressionUUID->"a7ab248c-b4fb-4561-92b4-354b7e14742f"],
 
 Cell[CellGroupData[{
 
@@ -218,12 +218,10 @@ Cell[BoxData[{
       RowBox[{"4", " ", "Pi"}], ")"}]}]}], ";"}], "   ", 
   RowBox[{"(*", " ", 
    RowBox[{
-   "2", " ", "inch", " ", "collector", " ", "with", " ", "no", " ", 
-    "downstream", " ", 
-    RowBox[{"clipping", ":", " ", 
-     RowBox[{
-     "the", " ", "0.0559", " ", "quoted", " ", "in", " ", "the", " ", 
-      "brief"}]}]}], " ", "*)"}]}], "\n", 
+    RowBox[{
+    "2", " ", "inch", " ", "collector", " ", "with", " ", "no", " ", 
+     "downstream", " ", "clipping"}], ",", " ", 
+    RowBox[{"for", " ", "reference"}]}], " ", "*)"}]}], "\n", 
  RowBox[{
   RowBox[{"vignettingFactor", " ", "=", " ", 
    RowBox[{"geometricEfficiency", "/", "geometricEfficiencyUnvignetted"}]}], 
@@ -279,7 +277,7 @@ Cell[BoxData[{
     "}"}], ",", "\n", "     ", 
    RowBox[{"Alignment", " ", "->", " ", "Left"}], ",", " ", 
    RowBox[{"Dividers", " ", "->", " ", "All"}]}], "]"}]}], "Input",
- CellLabel->"In[1]:=",ExpressionUUID->"6b65f9e7-1f12-4e84-83bb-254ce661d56d"],
+ CellLabel->"In[1]:=",ExpressionUUID->"27c21cb0-bfa2-4549-8580-96fc5da3fbb5"],
 
 Cell[BoxData[
  TagBox[GridBox[{
@@ -303,7 +301,7 @@ Cell[BoxData[
    GridBoxDividers->{"Columns" -> {{True}}, "Rows" -> {{True}}},
    GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
   "Grid"]], "Output",
- CellLabel->"Out[1]=",ExpressionUUID->"22b44bb7-0c34-4ad2-a2c8-957e013ce276"]
+ CellLabel->"Out[1]=",ExpressionUUID->"b81fdc85-4036-4c43-92af-a5397425a6a2"]
 }, Open  ]]
 }, Open  ]],
 
@@ -311,27 +309,27 @@ Cell[CellGroupData[{
 
 Cell["\<\
 1.2 Molecular cloud, integration aperture and laser-scatter background\
-\>", "Subsection",ExpressionUUID->"68d755cc-4718-4b12-8b97-651b808586ee"],
+\>", "Subsection",ExpressionUUID->"2255055f-98fb-4965-a219-edb535c6a7ac"],
 
 Cell["\<\
 The cloud is a 2D Gaussian of measured FWHM 2.8 mm in object space at the MOT \
 (sigma = FWHM/(2 Sqrt[2 Log[2]]) = 1.189 mm, 1/e^2 diameter 4.76 mm). The \
-FWHM is the primary input here and supersedes the 1.5 mm 1/e^2 diameter of \
-the original specification. The integration aperture is a disc of radius 2 \
-sigma = 2.378 mm at the MOT, which contains a fraction 1 - Exp[-2] = 86.5% of \
-the cloud fluorescence. Signal photon numbers quoted in this notebook (nSig) \
-are the photons arriving on the sensor inside that aperture. All cloud \
-geometry is kept in object space and pixels are projected back through the \
-magnification: a superpixel of physical pitch b x pixelPitch on the chip \
-covers b x pixelPitch / M at the MOT. Background and dark electrons, in \
-contrast, are properties of the physical sensor pixel and do not scale with M.\
-\>", "Text",ExpressionUUID->"caae7fb5-72e0-44a3-b5e5-ac9a1340f92d"],
+FWHM is the primary input; sigma and the 1/e^2 radius derive from it. The \
+integration aperture is a disc of radius 2 sigma = 2.378 mm at the MOT, which \
+contains a fraction 1 - Exp[-2] = 86.5% of the cloud fluorescence. Signal \
+photon numbers quoted in this notebook (nSig) are the photons arriving on the \
+sensor inside that aperture. All cloud geometry is kept in object space and \
+pixels are projected back through the magnification: a superpixel of physical \
+pitch b x pixelPitch on the chip covers b x pixelPitch / M at the MOT. \
+Background and dark electrons, in contrast, are properties of the physical \
+sensor pixel and do not scale with M.\
+\>", "Text",ExpressionUUID->"30d5291c-fb69-4f78-b82e-29a737955ad5"],
 
 Cell["\<\
 The laser-scatter background is specified as 39 photons/s per 6.5 um x 6.5 um \
 pixel at baseline; the active condition is 4x baseline, i.e. 3.69 photons/(s \
 um^2). The multiplier is a free parameter (0.5 to 10).\
-\>", "Text",ExpressionUUID->"97030211-2ced-4c08-a68e-dc4440df629a"],
+\>", "Text",ExpressionUUID->"db75a368-10eb-467a-97ce-3b4da953efcf"],
 
 Cell["\<\
 Molecule number to signal photons: each molecule scatters scatteringRate \
@@ -342,7 +340,7 @@ geometricEfficiency x transmissionOptics x apertureSignalFraction. The \
 scattering rate (default 1e6 photons/s per molecule, a typical CaF MOT value) \
 is an assumed parameter and is exposed as a dashboard control; all benchmark \
 axes are in molecules.\
-\>", "Text",ExpressionUUID->"27f6e1b8-6f54-486e-8809-aef33a940019"],
+\>", "Text",ExpressionUUID->"6623fb2c-abfa-409c-939f-d0428d9adac7"],
 
 Cell[CellGroupData[{
 
@@ -571,7 +569,7 @@ um^2))\>\"", ",", " ",
       "}"}]}], "}"}], ",", "\n", "     ", 
    RowBox[{"Alignment", " ", "->", " ", "Left"}], ",", " ", 
    RowBox[{"Dividers", " ", "->", " ", "All"}]}], "]"}]}], "Input",
- CellLabel->"In[2]:=",ExpressionUUID->"2e943268-a668-49cc-be08-90c8c59a3bbe"],
+ CellLabel->"In[2]:=",ExpressionUUID->"5b410bbc-53d6-4725-b577-7152012779f3"],
 
 Cell[BoxData[
  TagBox[GridBox[{
@@ -594,24 +592,24 @@ Cell[BoxData[
    GridBoxDividers->{"Columns" -> {{True}}, "Rows" -> {{True}}},
    GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
   "Grid"]], "Output",
- CellLabel->"Out[2]=",ExpressionUUID->"da935a17-b4a9-47b5-9045-3b0e3d1da208"]
+ CellLabel->"Out[2]=",ExpressionUUID->"184a92c4-b4c3-44cd-b439-2469ff89de98"]
 }, Open  ]]
 }, Open  ]],
 
 Cell[CellGroupData[{
 
-Cell["1.3 Camera specification database", "Subsection",ExpressionUUID->"6f0f10c1-d3a4-4881-95f0-a1afe64d8478"],
+Cell["1.3 Camera specification database", "Subsection",ExpressionUUID->"f2fb1b57-0308-4271-8a1d-c1507865096d"],
 
 Cell["\<\
 ReadNoiseRMS is the primary (lowest-noise) readout mode used for the \
-benchmark curves; ReadNoiseModes lists all quoted modes. FullWell values for \
-the Kinetix and iXon are nominal data-sheet figures not contained in the \
-brief and are only used for the saturation warning on the dashboard. The two \
-Andor CB2 models were added from the CB2 brochure (cb2-specifications.pdf): \
-QE at 606 nm was read off the published curves (62% High Res, 68% High \
-Speed), and HardwareBinLimit = 2 encodes their on-chip 2x2 charge-domain \
-binning.\
-\>", "Text",ExpressionUUID->"573ce5f8-5950-41d6-8663-19d75d8d7615"],
+benchmark curves; ReadNoiseModes lists all quoted modes. QE values are at 606 \
+nm, read off each vendor's published curve where no number is quoted at that \
+wavelength (the CB2 curves give 62% High Res and 68% High Speed). FullWell is \
+only used for the saturation markers. HardwareBinLimit encodes how binning is \
+implemented: 1 = digital only, Infinity = on-chip for every bin (CCD serial \
+register, EMCCD), 2 = on-chip 2x2 charge-domain binning with digital summing \
+beyond (Andor CB2).\
+\>", "Text",ExpressionUUID->"3cc55673-8e25-44c6-af2b-cb4839cca1c5"],
 
 Cell[CellGroupData[{
 
@@ -757,8 +755,8 @@ superpixel.\>\""}]}], "|>"}]}], ",", "\n", "  ",
          ",", " ", 
         RowBox[{"\"\<ENF\>\"", " ", "->", " ", "1.0"}], ",", "\n", "     ", 
         RowBox[{"\"\<Notes\>\"", " ", "->", 
-         " ", "\"\<FullWell is a nominal data-sheet value (not in the brief).\
-\>\""}]}], "|>"}]}], ",", "\n", "  ", 
+         " ", "\"\<FullWell is a nominal data-sheet value.\>\""}]}], "|>"}]}],
+      ",", "\n", "  ", 
      RowBox[{"\"\<Andor iXon Ultra 888 (EMCCD Benchmark)\>\"", " ", "->", " ", 
       RowBox[{"<|", "\n", "     ", 
        RowBox[{
@@ -792,8 +790,8 @@ superpixel.\>\""}]}], "|>"}]}], ",", "\n", "  ",
          RowBox[{"Sqrt", "[", "2.", "]"}]}], ",", "\n", "     ", 
         RowBox[{"\"\<Notes\>\"", " ", "->", 
          " ", "\"\<Effective read noise 0.15 e- at EM gain 300; excess noise \
-factor Sqrt[2]. FullWell is the conventional-mode value (not in the brief).\>\
-\""}]}], "|>"}]}], ",", "\n", "  ", 
+factor Sqrt[2]. FullWell is the conventional-mode value.\>\""}]}], "|>"}]}], ",",
+      "\n", "  ", 
      RowBox[{"\"\<Andor CB2 High Res (24.5 MP BSI sCMOS)\>\"", " ", "->", " ", 
       RowBox[{"<|", "\n", "     ", 
        RowBox[{
@@ -894,7 +892,7 @@ gain (14-bit HDR mode combines both). 2x2 charge-domain binning on chip gives \
        RowBox[{"\"\<Notes\>\"", ",", " ", "\"\<ReadNoiseModes\>\""}], "}"}]}],
       "]"}], " ", "&"}], " ", "/@", " ", "cameraDatabase"}], "]"}]}], "Input",\
 
- CellLabel->"In[3]:=",ExpressionUUID->"42142c1f-b395-4b6c-b291-cb961cde7888"],
+ CellLabel->"In[3]:=",ExpressionUUID->"74a1b829-b069-4f5b-ad4a-b9b41087863d"],
 
 Cell[BoxData[
  TagBox[
@@ -3079,13 +3077,13 @@ lastPathIsLeafHeader, TypeSystem`NestedGrid`PackagePrivate`headerHidden$ = And[
   Editable->False,
   SelectWithContents->True,
   Selectable->False]], "Output",
- CellLabel->"Out[3]=",ExpressionUUID->"9b341503-8cac-49a3-8362-d2a779a4611e"]
+ CellLabel->"Out[3]=",ExpressionUUID->"a632c2b1-aeba-4578-b24f-63539a6c3624"]
 }, Open  ]]
 }, Open  ]],
 
 Cell[CellGroupData[{
 
-Cell["1.4 Superpixel noise terms and integrated-aperture SNR", "Subsection",ExpressionUUID->"d6bd02a0-c6c6-44d5-9474-c5a4af41c18e"],
+Cell["1.4 Superpixel noise terms and integrated-aperture SNR", "Subsection",ExpressionUUID->"f1c28fe8-5912-46db-ace5-039d0aecd913"],
 
 Cell["\<\
 For a b x b superpixel: backgroundElectrons = flux x area x tExp x QE, \
@@ -3096,7 +3094,7 @@ variance is b^2 sigmaRead^2 (effective rms = b sigmaRead). The general rule, \
 sigmaReadEff = sigmaRead x b / Min[b, hardwareBinLimit], also covers sensors \
 such as the Andor CB2 that bin 2x2 in the charge domain on chip and digitally \
 beyond that.\
-\>", "Text",ExpressionUUID->"7abe465e-7fe6-4a37-a99c-05647b64d11d"],
+\>", "Text",ExpressionUUID->"8ad118a6-68a1-4816-bfea-c7441ff4ba47"],
 
 Cell["\<\
 The aperture-integrated SNR uses signal electrons S = nSig QE and the \
@@ -3105,7 +3103,7 @@ factor 2 on the background, dark and read terms accounts for subtracting an \
 identical off-target reference aperture. The minimum signal for a target SNR \
 follows from the quadratic S^2 - SNR^2 ENF^2 S - SNR^2 V0 = 0 in closed form.\
 \
-\>", "Text",ExpressionUUID->"63b6c4f8-919d-43d8-9387-463c6e1608ce"],
+\>", "Text",ExpressionUUID->"31dfad81-f986-42fc-a338-903570eee487"],
 
 Cell[CellGroupData[{
 
@@ -3811,7 +3809,7 @@ full well) at \>\"", ",", "\n", "             ",
           RowBox[{"cameraNames", "[", 
            RowBox[{"[", "3", "]"}], "]"}], "]"}], ",", " ", "4"}], "]"}], ",",
         " ", "\"\< e-\>\""}], "}"}], "]"}]}], "}"}], "]"}]}], "Input",
- CellLabel->"In[4]:=",ExpressionUUID->"190fa2aa-07ab-4713-926e-9465da2b4d71"],
+ CellLabel->"In[4]:=",ExpressionUUID->"e0bed39c-9e76-41db-a217-b5820b03028f"],
 
 Cell[BoxData[
  TagBox[GridBox[{
@@ -3845,7 +3843,7 @@ at \"", "1.33`*^6", "\" molecules\""},
    GridBoxAlignment->{"Columns" -> {{Left}}},
    GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
   "Column"]], "Output",
- CellLabel->"Out[4]=",ExpressionUUID->"a677d102-02e3-4c07-b511-aa2b4b4845e8"]
+ CellLabel->"Out[4]=",ExpressionUUID->"67dad504-ae53-4507-9c9a-1d13714503c3"]
 }, Open  ]]
 }, Open  ]],
 
@@ -3853,25 +3851,25 @@ Cell[CellGroupData[{
 
 Cell["\<\
 1.5 How the SNR is defined: per pixel, top-hat aperture, or optimally weighted\
-\>", "Subsection",ExpressionUUID->"3d92a9ce-5948-4759-8a8b-e691df994095"],
+\>", "Subsection",ExpressionUUID->"39f5be9e-549a-4b6a-a0ff-179549077e39"],
 
 Cell["\<\
 \"The SNR\" is not a property of the camera alone: it depends on the \
 estimator applied to the image. Three definitions are computed here, all for \
 a signal frame minus an identical off-target reference frame.\
-\>", "Text",ExpressionUUID->"9f526689-5146-4ca4-9e2f-c79d41447ff8"],
+\>", "Text",ExpressionUUID->"e3619454-e629-4acf-bf77-9b388ea0806d"],
 
 Cell["\<\
 peakPixelSNR: signal to noise of the single brightest superpixel. This sets \
 whether the cloud is visible by eye in a single shot, but it is NOT the \
 precision of a molecule-number measurement.\
-\>", "Text",ExpressionUUID->"a8857d1a-a1e6-4558-8411-dcf2ef5f207a"],
+\>", "Text",ExpressionUUID->"04504964-8877-43e1-ab45-eff3731cc18c"],
 
 Cell["\<\
 topHatSNR: the flat sum over the 2 sigma aperture minus a reference aperture, \
 i.e. the definition used in the benchmark sections. It is the natural \
 estimator of the molecule number and is what most groups quote.\
-\>", "Text",ExpressionUUID->"ffe79a75-c3e1-4a06-ba68-6e098de0c726"],
+\>", "Text",ExpressionUUID->"dfd007d3-97d7-4b8f-8142-2524d93af097"],
 
 Cell["\<\
 matchedFilterSNR: the same measurement made with the optimal \
@@ -3881,7 +3879,7 @@ with wi proportional to pi/sigmai^2. Its variance is the Cramer-Rao bound \
 better. In the shot-noise limit it coincides with the top-hat sum; when read \
 noise or scatter dominates it wins, because pixels in the wings carry full \
 noise but little signal and the flat sum weights them equally.\
-\>", "Text",ExpressionUUID->"bb8a2019-9ec9-425a-a7a1-ec5f71583e1a"],
+\>", "Text",ExpressionUUID->"0b3e1402-9440-4ed9-aaf4-bdf2da2f759a"],
 
 Cell["\<\
 Also computed: widthPrecision, the fractional uncertainty on the cloud width \
@@ -3890,7 +3888,7 @@ Sqrt[Sum[(dsi/dsigma)^2/sigmai^2]]). This is the figure of merit for \
 time-of-flight thermometry and behaves differently from the number precision: \
 it depends on resolving the profile, so it rewards small pixels and penalises \
 coarse binning.\
-\>", "Text",ExpressionUUID->"d16a3009-a79f-4e9f-8866-98680c9c2a6c"],
+\>", "Text",ExpressionUUID->"f64078f8-f5e3-427c-9877-521ad3d51191"],
 
 Cell[BoxData[{
  RowBox[{
@@ -4160,7 +4158,7 @@ Cell[BoxData[{
      "exposureTimeNominal", ",", " ", "backgroundMultiplierDefault", ",", " ", 
      RowBox[{"cam", "[", "\"\<ReadNoiseRMS\>\"", "]"}], ",", " ", 
      "scatteringRate"}], "]"}]}], ";"}]}], "Input",
- CellLabel->"In[5]:=",ExpressionUUID->"b0aa79ba-7924-4a8b-a983-c1de02a7b626"]
+ CellLabel->"In[5]:=",ExpressionUUID->"84871be1-f8e4-4323-87eb-967e9d65da72"]
 }, Open  ]]
 }, Open  ]],
 
@@ -4169,7 +4167,7 @@ Cell[CellGroupData[{
 Cell["\<\
 2. Primary Benchmark: Integrated SNR vs Number of Molecules in the MOT \
 (log-log)\
-\>", "Section",ExpressionUUID->"60ddc1e9-a43c-4e4c-99a2-a0dd5c72c3d9"],
+\>", "Section",ExpressionUUID->"f01c3d14-74df-4b5a-9b7b-3ad4903ecbba"],
 
 Cell["\<\
 All five cameras at 1x1, 2x2 and 4x4 binning, 20 ms exposure, 4x baseline \
@@ -4183,7 +4181,7 @@ shot noise dominates, SNR is proportional to Sqrt[nMol] (slope 1/2). Filled \
 markers show where the peak superpixel reaches the full-well capacity at 20 \
 ms: beyond that point the curve is only reachable with a shorter exposure or \
 coarser binning.\
-\>", "Text",ExpressionUUID->"d5fd8339-55b5-4b09-ad2c-8ccc642b6776"],
+\>", "Text",ExpressionUUID->"72c6cded-83b7-4445-bb1b-7386a8384db2"],
 
 Cell["\<\
 Note on binning: binning sums pixels, it does not average them. Over a fixed \
@@ -4201,22 +4199,22 @@ doing for per-pixel visibility, data volume and frame rate, but it adds no \
 information about the molecule number: see Section 3, where the \
 matched-filter SNR of the Zelux is identical at every binning while its \
 peak-pixel SNR grows as b.\
-\>", "Text",ExpressionUUID->"ddc50644-237e-4cd7-9049-5f18d5a7e1f7"],
+\>", "Text",ExpressionUUID->"212b0c1b-be62-495e-831d-253bf692a605"],
 
 Cell["\<\
-Caveat on the laser-scatter background: the brief specifies it as a flux per \
-sensor pixel area, and it is implemented that way, so the scatter collected \
-inside the aperture scales as M^2 and demagnification reduces it. That is the \
-right model for stray light reaching the sensor from outside the imaged \
-region. If instead the scatter is light from the imaged MOT region (chamber \
-walls, viewports in the field of view), it is imaged like the signal, its \
-total inside the aperture is independent of M, and only the read-noise term \
+Caveat on the laser-scatter background: it is specified as a flux per sensor \
+pixel area and implemented that way, so the scatter collected inside the \
+aperture scales as M^2 and demagnification reduces it. That is the right \
+model for stray light reaching the sensor from outside the imaged region. If \
+instead the scatter is light from the imaged MOT region (chamber walls, \
+viewports in the field of view), it is imaged like the signal, its total \
+inside the aperture is independent of M, and only the read-noise term \
 benefits from demagnification. The distinction does not affect the \
 read-noise-limited cameras (for the Zelux the scatter is 3.6% of the \
 noise-floor variance) but it matters for the ORCA-Quest 2 and the iXon, which \
 are scatter-dominated. Measure the background per pixel per frame to settle \
 it.\
-\>", "Text",ExpressionUUID->"4126f55b-d053-41dc-a481-e11b6ffe1f69"],
+\>", "Text",ExpressionUUID->"348b9f6b-35a5-4a93-b69d-5c9c2534ff9b"],
 
 Cell[CellGroupData[{
 
@@ -4551,7 +4549,7 @@ dark)\\nslope \[TildeTilde] 1\>\"", ",", " ", "10", ",", " ", "Gray", ",",
           "saturationLegend"}], "}"}], ",", " ", 
         RowBox[{"Spacings", " ", "->", " ", "1.5"}]}], "]"}], ",", " ", 
       "Right"}], "]"}]}], "]"}]}]}], "Input",
- CellLabel->"In[6]:=",ExpressionUUID->"565ce678-8ebb-4295-97af-a73ed3ee9e35"],
+ CellLabel->"In[6]:=",ExpressionUUID->"dfaacb7d-f3e4-40be-b77e-c59eb28416dc"],
 
 Cell[BoxData[
  TemplateBox[{
@@ -7982,13 +7980,13 @@ baseline scatter, 10^6 photons/s per molecule\"", 13, StripOnInput -> False],
      RowBox[{#, ",", 
        RowBox[{"Placed", "[", 
          RowBox[{#2, ",", "After"}], "]"}]}], "]"}]& )]], "Output",
- CellLabel->"Out[6]=",ExpressionUUID->"9b821df5-9622-4677-85fc-a974872349ff"]
+ CellLabel->"Out[6]=",ExpressionUUID->"69006b98-4a97-4bf1-a3c0-4c2f21787fa4"]
 }, Open  ]],
 
 Cell["\<\
 The same curves split by camera, which makes the hardware-versus-software \
 binning behaviour visible.\
-\>", "Text",ExpressionUUID->"9d3b68da-d2c1-43db-a01e-0dcf58234f96"],
+\>", "Text",ExpressionUUID->"6074a39a-9d45-4d3e-9acc-ac19c3d37f6c"],
 
 Cell[CellGroupData[{
 
@@ -8081,7 +8079,7 @@ Cell[BoxData[{
     ",", " ", 
     RowBox[{"Appearance", " ", "->", " ", "\"\<Horizontal\>\""}]}], 
    "]"}]}]}], "Input",
- CellLabel->"In[7]:=",ExpressionUUID->"d04ac10b-f37c-447a-b90c-97927abb1b3d"],
+ CellLabel->"In[7]:=",ExpressionUUID->"d673fd30-b6e7-46d8-a7ab-6dc7722eee50"],
 
 Cell[BoxData[
  TagBox[GridBox[{
@@ -15084,7 +15082,7 @@ ppDhrbi9oIfgP1DWDKI=
    GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
    GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
   "Grid"]], "Output",
- CellLabel->"Out[7]=",ExpressionUUID->"5860ba41-c712-452c-a49b-db1093c7d19c"]
+ CellLabel->"Out[7]=",ExpressionUUID->"1ccb1664-f511-489e-99a3-1e2f56f502e3"]
 }, Open  ]],
 
 Cell["\<\
@@ -15092,7 +15090,7 @@ Asymptotic diagnostics at nominal conditions: which term sets the noise \
 floor, the molecule number at which signal shot noise overtakes the floor, \
 the molecule number at which the peak superpixel saturates (20 ms), and the \
 local log-log slope at three molecule numbers.\
-\>", "Text",ExpressionUUID->"ed05964b-8769-4626-b329-dca58e59dfb9"],
+\>", "Text",ExpressionUUID->"a9388206-645d-4e27-94f8-83a21eabf16c"],
 
 Cell[CellGroupData[{
 
@@ -15194,7 +15192,7 @@ Cell[BoxData[
        RowBox[{"{", 
         RowBox[{"binFactor", ",", " ", "benchmarkBins"}], "}"}]}], "]"}], ",",
       " ", "1"}], "]"}], "]"}]}]], "Input",
- CellLabel->"In[8]:=",ExpressionUUID->"0eca34d7-65c9-43b9-af10-1e536c9de89c"],
+ CellLabel->"In[8]:=",ExpressionUUID->"7519c745-671c-4213-9f17-e5498f3ebb8c"],
 
 Cell[BoxData[
  TagBox[
@@ -18787,7 +18785,7 @@ lastPathIsLeafHeader, TypeSystem`NestedGrid`PackagePrivate`headerHidden$ = And[
   Editable->False,
   SelectWithContents->True,
   Selectable->False]], "Output",
- CellLabel->"Out[8]=",ExpressionUUID->"79664317-eb28-4d25-bfaf-6046bb85a43d"]
+ CellLabel->"Out[8]=",ExpressionUUID->"3f5a12fd-d070-46e0-b46c-89c6d99c2462"]
 }, Open  ]]
 }, Open  ]],
 
@@ -18795,7 +18793,7 @@ Cell[CellGroupData[{
 
 Cell["\<\
 3. Choosing the SNR Definition: Per Pixel vs Top-Hat vs Optimal Weighting\
-\>", "Section",ExpressionUUID->"ccce04df-57e4-4e20-9ac5-027698df6344"],
+\>", "Section",ExpressionUUID->"4f59c8cf-880e-488c-aaf6-784adbd681ee"],
 
 Cell["\<\
 At the working point (10^4 molecules, 20 ms, 4x scatter) the three \
@@ -18803,7 +18801,7 @@ definitions differ by orders of magnitude, so quoting \"the SNR\" without \
 saying which one is meaningless. The table gives all three, the gain from \
 optimal weighting, and the resulting fractional precision on the molecule \
 number and on the cloud width.\
-\>", "Text",ExpressionUUID->"88860004-2b24-4634-9938-10c4b208b03c"],
+\>", "Text",ExpressionUUID->"c6c4ec33-d8c1-4e9a-ab5b-54b26f3ecb3b"],
 
 Cell[CellGroupData[{
 
@@ -18885,7 +18883,7 @@ Cell[BoxData[{
        RowBox[{"{", 
         RowBox[{"binFactor", ",", " ", "benchmarkBins"}], "}"}]}], "]"}], ",",
       " ", "1"}], "]"}], "]"}]}]}], "Input",
- CellLabel->"In[9]:=",ExpressionUUID->"3579d267-7794-4230-9faf-984134bc5369"],
+ CellLabel->"In[9]:=",ExpressionUUID->"59634cba-096e-4726-8eab-bd14f9d435ea"],
 
 Cell[BoxData[
  TagBox[
@@ -22160,7 +22158,7 @@ lastPathIsLeafHeader, TypeSystem`NestedGrid`PackagePrivate`headerHidden$ = And[
   Editable->False,
   SelectWithContents->True,
   Selectable->False]], "Output",
- CellLabel->"Out[9]=",ExpressionUUID->"a458f78a-72b5-4a71-b93a-789c682b34a2"]
+ CellLabel->"Out[9]=",ExpressionUUID->"57f0c70e-7607-4b4c-bc4f-cd8cf6e1432d"]
 }, Open  ]],
 
 Cell["\<\
@@ -22168,7 +22166,7 @@ How the three definitions separate with molecule number, at 1x1 binning. The \
 gain from optimal weighting is largest exactly where the measurement is \
 hardest (read-noise limited, few molecules) and vanishes once signal shot \
 noise dominates, where the flat sum is already optimal.\
-\>", "Text",ExpressionUUID->"c8f7aea1-8009-4218-b011-32173704229f"],
+\>", "Text",ExpressionUUID->"79763d3c-896b-4a66-933d-03395f464618"],
 
 Cell[CellGroupData[{
 
@@ -22310,7 +22308,7 @@ Cell[BoxData[{
     RowBox[{"Spacings", " ", "->", " ", 
      RowBox[{"{", 
       RowBox[{"1", ",", " ", "0"}], "}"}]}]}], "]"}]}]}], "Input",
- CellLabel->"In[10]:=",ExpressionUUID->"5066e6c7-661b-4efd-a805-7812814c0be8"],
+ CellLabel->"In[10]:=",ExpressionUUID->"19628d4f-edfe-436d-ad52-8da4e37dcfb9"],
 
 Cell[BoxData[
  TagBox[GridBox[{
@@ -24175,13 +24173,13 @@ zPNp47bv/A4Q92s76M5x7zyqJOgAAPV8mVE=
    GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}},
    GridBoxSpacings->{"Columns" -> {{1}}, "Rows" -> {{0}}}],
   "Grid"]], "Output",
- CellLabel->"Out[10]=",ExpressionUUID->"6e6de387-80a1-4a02-a4b4-dae69e770396"]
+ CellLabel->"Out[10]=",ExpressionUUID->"5c7c5ba3-b01c-4391-a64d-ed809bae51b7"]
 }, Open  ]]
 }, Open  ]],
 
 Cell[CellGroupData[{
 
-Cell["4. Single-Shot Visibility: Peak-Pixel SNR vs Binning", "Section",ExpressionUUID->"b3b04dd0-a2a7-45f9-a7de-7bccf117fafc"],
+Cell["4. Single-Shot Visibility: Peak-Pixel SNR vs Binning", "Section",ExpressionUUID->"efaba3ef-37f5-4bc3-a58c-f5ae9b5fd71c"],
 
 Cell["\<\
 This section is about seeing the cloud in a raw single shot, not about \
@@ -24189,7 +24187,7 @@ measuring the molecule number. The relevant quantity is the signal to noise \
 of the brightest superpixel: the cloud is marginal at peakPixelSNR ~ 3 and \
 unmistakable at ~5, whereas the aperture-integrated SNR of Section 2 can be \
 in the hundreds while no individual pixel stands out.\
-\>", "Text",ExpressionUUID->"dc9c0292-2c8e-4246-8de2-bb574e3c0741"],
+\>", "Text",ExpressionUUID->"95d4713a-b4ab-460e-99bb-232cb2899710"],
 
 Cell["\<\
 This is the one place where software binning genuinely helps. Binning b x b \
@@ -24197,7 +24195,7 @@ multiplies the signal per superpixel by b^2 and its noise by b, so \
 peakPixelSNR grows in proportion to b for every camera, hardware-binned or \
 not. It buys visibility, not precision: the integrated SNR is unchanged \
 (software) or improved separately (hardware), as Section 3 shows.\
-\>", "Text",ExpressionUUID->"88576c2c-0176-4cca-a21b-53d1b3ef844c"],
+\>", "Text",ExpressionUUID->"428dc211-bf22-450c-a7d1-8b1e16a35d00"],
 
 Cell[CellGroupData[{
 
@@ -24332,7 +24330,7 @@ Cell[BoxData[{
      ",", " ", 
     RowBox[{"Appearance", " ", "->", " ", "\"\<Horizontal\>\""}]}], 
    "]"}]}]}], "Input",
- CellLabel->"In[11]:=",ExpressionUUID->"fe8aa84e-a80c-43d1-990a-e8677edaf266"],
+ CellLabel->"In[11]:=",ExpressionUUID->"67c8baf1-82ce-4ed2-9738-ca615e271f89"],
 
 Cell[BoxData[
  TagBox[GridBox[{
@@ -32575,7 +32573,7 @@ MdYQckQk3G9eOXW8mIKtrVMECRL/AcKaD2k=
    GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
    GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
   "Grid"]], "Output",
- CellLabel->"Out[11]=",ExpressionUUID->"14b50952-adc2-4b3c-ab1f-cc0f972be67b"]
+ CellLabel->"Out[11]=",ExpressionUUID->"8838b129-0084-4f7c-b303-e8097cc921f1"]
 }, Open  ]],
 
 Cell["\<\
@@ -32583,7 +32581,7 @@ The actionable summary: how many molecules are needed before the cloud is \
 visible in one shot, as a function of binning. Lower is better. The blue line \
 is the working point of 10^4 molecules; any camera/binning combination whose \
 curve lies below it shows the MOT in a raw frame.\
-\>", "Text",ExpressionUUID->"b3acf68f-3068-4e52-806a-cf67eeffc398"],
+\>", "Text",ExpressionUUID->"802c617d-c902-4998-8976-ef33bc95e6e8"],
 
 Cell[CellGroupData[{
 
@@ -32685,7 +32683,7 @@ baseline scatter)\>\"", ",", " ", "12"}], "]"}]}], ",", "\n", "     ",
           ",", " ", "Right"}], "]"}]}], ",", " ", 
        RowBox[{"ImageSize", " ", "->", " ", "560"}]}], "]"}]}]}], 
    "]"}]}]], "Input",
- CellLabel->"In[12]:=",ExpressionUUID->"7e405e36-bb06-46a1-b782-f65594be612e"],
+ CellLabel->"In[12]:=",ExpressionUUID->"a311dbce-7483-4a8c-ac42-c961a877182c"],
 
 Cell[BoxData[
  TemplateBox[{
@@ -34137,7 +34135,7 @@ scatter)\"", 12, StripOnInput -> False], TraditionalForm],
      RowBox[{#, ",", 
        RowBox[{"Placed", "[", 
          RowBox[{#2, ",", "After"}], "]"}]}], "]"}]& )]], "Output",
- CellLabel->"Out[12]=",ExpressionUUID->"c12de361-128f-404d-afa9-4da3e313ad5e"]
+ CellLabel->"Out[12]=",ExpressionUUID->"660e8297-75e7-4630-aebf-872eb9cb4f60"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -34218,7 +34216,7 @@ Cell[BoxData[
           RowBox[{"cameraDatabase", "[", "name", "]"}], 
           "[", "\"\<SupportedBins\>\"", "]"}]}], "}"}]}], "]"}], ",", " ", 
      "1"}], "]"}], "]"}]}]], "Input",
- CellLabel->"In[13]:=",ExpressionUUID->"5d07e207-900c-4588-8f21-1db9b1c0a612"],
+ CellLabel->"In[13]:=",ExpressionUUID->"49c70ab9-483c-4d91-990b-27e387842fc1"],
 
 Cell[BoxData[
  TagBox[
@@ -34422,10 +34420,9 @@ superpixel."|>, 8]], "Peak SNR at 10^4 mol" -> 77.,
             "ReadNoiseModes" -> <|"Sensitivity" -> 1.2|>, "DarkCurrent" -> 
             0.15, "FullWell" -> 15000, "BinningType" -> "Software", 
             "HardwareBinLimit" -> 1, "SupportedBins" -> {1, 2, 4, 8}, "ENF" -> 
-            1., "Notes" -> 
-            "FullWell is a nominal data-sheet value (not in the brief)."|>, 
-           1]], "Peak SNR at 10^4 mol" -> 11.2, "Molecules for peak SNR = 3" -> 
-        1080., "Molecules for peak SNR = 5" -> 2390., "Visible at 10^4?" -> 
+            1., "Notes" -> "FullWell is a nominal data-sheet value."|>, 1]], 
+        "Peak SNR at 10^4 mol" -> 11.2, "Molecules for peak SNR = 3" -> 1080.,
+         "Molecules for peak SNR = 5" -> 2390., "Visible at 10^4?" -> 
         "yes"|>, <|
        "Camera" -> "Kinetix", "Binning" -> "Software", "Bin" -> "2\[Times]2", 
         "Object pitch (um)" -> 27.2, "Elements across FWHM" -> Round[
@@ -34436,11 +34433,9 @@ superpixel."|>, 8]], "Peak SNR at 10^4 mol" -> 77.,
             "ReadNoiseModes" -> <|"Sensitivity" -> 1.2|>, "DarkCurrent" -> 
             0.15, "FullWell" -> 15000, "BinningType" -> "Software", 
             "HardwareBinLimit" -> 1, "SupportedBins" -> {1, 2, 4, 8}, "ENF" -> 
-            1., "Notes" -> 
-            "FullWell is a nominal data-sheet value (not in the brief)."|>, 
-           2]], "Peak SNR at 10^4 mol" -> 22.3, "Molecules for peak SNR = 3" -> 
-        426., "Molecules for peak SNR = 5" -> 834., "Visible at 10^4?" -> 
-        "yes"|>, <|
+            1., "Notes" -> "FullWell is a nominal data-sheet value."|>, 2]], 
+        "Peak SNR at 10^4 mol" -> 22.3, "Molecules for peak SNR = 3" -> 426., 
+        "Molecules for peak SNR = 5" -> 834., "Visible at 10^4?" -> "yes"|>, <|
        "Camera" -> "Kinetix", "Binning" -> "Software", "Bin" -> "4\[Times]4", 
         "Object pitch (um)" -> 54.4, "Elements across FWHM" -> Round[
           $CellContext`resolutionElementsAcrossFWHM[<|
@@ -34450,11 +34445,9 @@ superpixel."|>, 8]], "Peak SNR at 10^4 mol" -> 77.,
             "ReadNoiseModes" -> <|"Sensitivity" -> 1.2|>, "DarkCurrent" -> 
             0.15, "FullWell" -> 15000, "BinningType" -> "Software", 
             "HardwareBinLimit" -> 1, "SupportedBins" -> {1, 2, 4, 8}, "ENF" -> 
-            1., "Notes" -> 
-            "FullWell is a nominal data-sheet value (not in the brief)."|>, 
-           4]], "Peak SNR at 10^4 mol" -> 44.7, "Molecules for peak SNR = 3" -> 
-        188., "Molecules for peak SNR = 5" -> 341., "Visible at 10^4?" -> 
-        "yes"|>, <|
+            1., "Notes" -> "FullWell is a nominal data-sheet value."|>, 4]], 
+        "Peak SNR at 10^4 mol" -> 44.7, "Molecules for peak SNR = 3" -> 188., 
+        "Molecules for peak SNR = 5" -> 341., "Visible at 10^4?" -> "yes"|>, <|
        "Camera" -> "Kinetix", "Binning" -> "Software", "Bin" -> "8\[Times]8", 
         "Object pitch (um)" -> 109., "Elements across FWHM" -> Round[
           $CellContext`resolutionElementsAcrossFWHM[<|
@@ -34464,11 +34457,9 @@ superpixel."|>, 8]], "Peak SNR at 10^4 mol" -> 77.,
             "ReadNoiseModes" -> <|"Sensitivity" -> 1.2|>, "DarkCurrent" -> 
             0.15, "FullWell" -> 15000, "BinningType" -> "Software", 
             "HardwareBinLimit" -> 1, "SupportedBins" -> {1, 2, 4, 8}, "ENF" -> 
-            1., "Notes" -> 
-            "FullWell is a nominal data-sheet value (not in the brief)."|>, 
-           8]], "Peak SNR at 10^4 mol" -> 89.3, "Molecules for peak SNR = 3" -> 
-        88.2, "Molecules for peak SNR = 5" -> 153., "Visible at 10^4?" -> 
-        "yes"|>, <|
+            1., "Notes" -> "FullWell is a nominal data-sheet value."|>, 8]], 
+        "Peak SNR at 10^4 mol" -> 89.3, "Molecules for peak SNR = 3" -> 88.2, 
+        "Molecules for peak SNR = 5" -> 153., "Visible at 10^4?" -> "yes"|>, <|
        "Camera" -> "iXon Ultra 888", "Binning" -> "Hardware", "Bin" -> 
         "1\[Times]1", "Object pitch (um)" -> 27.2, "Elements across FWHM" -> 
         Round[
@@ -34482,7 +34473,7 @@ superpixel."|>, 8]], "Peak SNR at 10^4 mol" -> 77.,
             "SupportedBins" -> {1, 2, 4, 8}, "ENF" -> 1.4142135623730951`, 
             "Notes" -> 
             "Effective read noise 0.15 e- at EM gain 300; excess noise factor \
-Sqrt[2]. FullWell is the conventional-mode value (not in the brief)."|>, 1]], 
+Sqrt[2]. FullWell is the conventional-mode value."|>, 1]], 
         "Peak SNR at 10^4 mol" -> 16., "Molecules for peak SNR = 3" -> 582., 
         "Molecules for peak SNR = 5" -> 1250., "Visible at 10^4?" -> 
         "yes"|>, <|
@@ -34499,7 +34490,7 @@ Sqrt[2]. FullWell is the conventional-mode value (not in the brief)."|>, 1]],
             "SupportedBins" -> {1, 2, 4, 8}, "ENF" -> 1.4142135623730951`, 
             "Notes" -> 
             "Effective read noise 0.15 e- at EM gain 300; excess noise factor \
-Sqrt[2]. FullWell is the conventional-mode value (not in the brief)."|>, 2]], 
+Sqrt[2]. FullWell is the conventional-mode value."|>, 2]], 
         "Peak SNR at 10^4 mol" -> 32.1, "Molecules for peak SNR = 3" -> 236., 
         "Molecules for peak SNR = 5" -> 453., "Visible at 10^4?" -> "yes"|>, <|
        "Camera" -> "iXon Ultra 888", "Binning" -> "Hardware", "Bin" -> 
@@ -34515,7 +34506,7 @@ Sqrt[2]. FullWell is the conventional-mode value (not in the brief)."|>, 2]],
             "SupportedBins" -> {1, 2, 4, 8}, "ENF" -> 1.4142135623730951`, 
             "Notes" -> 
             "Effective read noise 0.15 e- at EM gain 300; excess noise factor \
-Sqrt[2]. FullWell is the conventional-mode value (not in the brief)."|>, 4]], 
+Sqrt[2]. FullWell is the conventional-mode value."|>, 4]], 
         "Peak SNR at 10^4 mol" -> 64.2, "Molecules for peak SNR = 3" -> 106., 
         "Molecules for peak SNR = 5" -> 190., "Visible at 10^4?" -> "yes"|>, <|
        "Camera" -> "iXon Ultra 888", "Binning" -> "Hardware", "Bin" -> 
@@ -34531,7 +34522,7 @@ Sqrt[2]. FullWell is the conventional-mode value (not in the brief)."|>, 4]],
             "SupportedBins" -> {1, 2, 4, 8}, "ENF" -> 1.4142135623730951`, 
             "Notes" -> 
             "Effective read noise 0.15 e- at EM gain 300; excess noise factor \
-Sqrt[2]. FullWell is the conventional-mode value (not in the brief)."|>, 8]], 
+Sqrt[2]. FullWell is the conventional-mode value."|>, 8]], 
         "Peak SNR at 10^4 mol" -> 128., "Molecules for peak SNR = 3" -> 50.1, 
         "Molecules for peak SNR = 5" -> 86.7, "Visible at 10^4?" -> "yes"|>, <|
        "Camera" -> "CB2 High Res", "Binning" -> 
@@ -37587,13 +37578,13 @@ lastPathIsLeafHeader, TypeSystem`NestedGrid`PackagePrivate`headerHidden$ = And[
   Editable->False,
   SelectWithContents->True,
   Selectable->False]], "Output",
- CellLabel->"Out[13]=",ExpressionUUID->"087d78ec-bb14-4d93-8de4-82ab9af0986e"]
+ CellLabel->"Out[13]=",ExpressionUUID->"15d98588-c04e-451a-bb09-d1eaa50f848c"]
 }, Open  ]]
 }, Open  ]],
 
 Cell[CellGroupData[{
 
-Cell["5. Spatial Resolution vs Binning Factor", "Section",ExpressionUUID->"9ba7f6d2-140b-4017-b568-60cbac36201e"],
+Cell["5. Spatial Resolution vs Binning Factor", "Section",ExpressionUUID->"daa24f52-6254-4124-b23c-409dd709eaa3"],
 
 Cell["\<\
 With magnification M = 0.478 a superpixel of physical pitch b x pixelPitch \
@@ -37602,7 +37593,7 @@ object-space sampling by a factor 2.1 relative to a 1:1 relay. The number of \
 resolution elements across the MOT FWHM (2.8 mm) is FWHM / object-space \
 superpixel pitch; at least ~5 elements are needed to fit a Gaussian width \
 reliably.\
-\>", "Text",ExpressionUUID->"54e22d85-22a7-489a-a2a4-149dfb4c21ae"],
+\>", "Text",ExpressionUUID->"c2a61c94-b3a3-457f-a94c-6035c1be1554"],
 
 Cell[CellGroupData[{
 
@@ -37665,7 +37656,7 @@ Cell[BoxData[{
           RowBox[{"cameraDatabase", "[", "name", "]"}], 
           "[", "\"\<SupportedBins\>\"", "]"}]}], "}"}]}], "]"}], ",", " ", 
      "1"}], "]"}], "]"}]}]}], "Input",
- CellLabel->"In[14]:=",ExpressionUUID->"590a5ddd-444e-4a7f-b657-82283de039c7"],
+ CellLabel->"In[14]:=",ExpressionUUID->"55d27a3e-6d5e-400d-9233-abcff5cda341"],
 
 Cell[BoxData[
  TagBox[
@@ -40184,7 +40175,7 @@ lastPathIsLeafHeader, TypeSystem`NestedGrid`PackagePrivate`headerHidden$ = And[
   Editable->False,
   SelectWithContents->True,
   Selectable->False]], "Output",
- CellLabel->"Out[14]=",ExpressionUUID->"5846d8d2-d67e-4fd0-a6d4-8b091e6c9a39"]
+ CellLabel->"Out[14]=",ExpressionUUID->"d6598a48-1e82-4d2f-b00b-334d4934231f"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -40357,7 +40348,7 @@ Cell[BoxData[
         RowBox[{"{", 
          RowBox[{"2", ",", " ", "0"}], "}"}]}]}], "]"}]}]}], "]"}]}]], "Input",\
 
- CellLabel->"In[15]:=",ExpressionUUID->"86655b92-3283-4b1c-87f1-853e3d07d502"],
+ CellLabel->"In[15]:=",ExpressionUUID->"c1eeadc8-9db6-47cd-b431-826beb791d71"],
 
 Cell[BoxData[
  TagBox[GridBox[{
@@ -42717,13 +42708,13 @@ Cell[BoxData[
    GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}},
    GridBoxSpacings->{"Columns" -> {{2}}, "Rows" -> {{0}}}],
   "Grid"]], "Output",
- CellLabel->"Out[15]=",ExpressionUUID->"af98a29a-50b9-4804-ae0d-ef5f2d9735cf"]
+ CellLabel->"Out[15]=",ExpressionUUID->"30053d68-7a89-4601-9c21-95e6a9311847"]
 }, Open  ]]
 }, Open  ]],
 
 Cell[CellGroupData[{
 
-Cell["6. Interactive MOT Dashboard", "Section",ExpressionUUID->"be8dfd09-1375-492a-9976-0b1a3cc2b431"],
+Cell["6. Interactive MOT Dashboard", "Section",ExpressionUUID->"a1f15050-41e1-4e96-95b1-a93a0ecbd7b3"],
 
 Cell["\<\
 Controls: camera, readout mode, binning, number of molecules (10 to 10^6), \
@@ -42735,7 +42726,7 @@ the shot noise is Poisson (excess-noise factor applied as a variance \
 multiplier for the EMCCD), and Gaussian read noise with the effective \
 (binned) rms is added. The centre row is fitted with a Gaussian plus offset \
 and the metrics card compares the fit with the analytic model.\
-\>", "Text",ExpressionUUID->"b5b776f3-f908-4bf7-8902-0f1f8d620cb9"],
+\>", "Text",ExpressionUUID->"eafe5513-9d3c-4df5-a05a-abab6c83f401"],
 
 Cell[CellGroupData[{
 
@@ -44032,7 +44023,7 @@ filter)\>\"", ",", "\n", "        ",
         ",", " ", "backgroundMultiplier", ",", " ", "noiseSeed"}], "}"}]}], ",",
      "\n", "   ", 
     RowBox[{"FrameMargins", " ", "->", " ", "8"}]}], "]"}]}]}], "Input",
- CellLabel->"In[16]:=",ExpressionUUID->"07398fe4-db0f-4ec1-8f38-6b4acfe9eab4"],
+ CellLabel->"In[16]:=",ExpressionUUID->"68c6deb6-aef7-475c-96b8-b14fa3981967"],
 
 Cell[BoxData[
  TagBox[
@@ -44251,8 +44242,7 @@ superpixel."|>,
            "ReadNoiseModes" -> <|"Sensitivity" -> 1.2|>, "DarkCurrent" -> 
            0.15, "FullWell" -> 15000, "BinningType" -> "Software", 
            "HardwareBinLimit" -> 1, "SupportedBins" -> {1, 2, 4, 8}, "ENF" -> 
-           1., "Notes" -> 
-           "FullWell is a nominal data-sheet value (not in the brief)."|>, 
+           1., "Notes" -> "FullWell is a nominal data-sheet value."|>, 
          "Andor iXon Ultra 888 (EMCCD Benchmark)" -> <|
           "ShortName" -> "iXon Ultra 888", "Type" -> "EMCCD", "PixelsX" -> 
            1024, "PixelsY" -> 1024, "PixelPitch" -> 13., "QE" -> 0.92, 
@@ -44262,7 +44252,7 @@ superpixel."|>,
            "HardwareBinLimit" -> Infinity, "SupportedBins" -> {1, 2, 4, 8}, 
            "ENF" -> 1.4142135623730951`, "Notes" -> 
            "Effective read noise 0.15 e- at EM gain 300; excess noise factor \
-Sqrt[2]. FullWell is the conventional-mode value (not in the brief)."|>, 
+Sqrt[2]. FullWell is the conventional-mode value."|>, 
          "Andor CB2 High Res (24.5 MP BSI sCMOS)" -> <|
           "ShortName" -> "CB2 High Res", "Type" -> 
            "sCMOS (BSI, global shutter)", "PixelsX" -> 5328, "PixelsY" -> 
@@ -44271,7 +44261,6 @@ Sqrt[2]. FullWell is the conventional-mode value (not in the brief)."|>,
            0.043, "FullWell" -> 9500, "BinningType" -> 
            "On-chip 2\[Times]2 + software", "HardwareBinLimit" -> 2, 
            "SupportedBins" -> {1, 2, 4, 8}, "ENF" -> 1., "Notes" -> 
-           
            "Andor CB2 brochure: QE 62% at 606 nm read from the published \
 curve (peak 74% at 500 nm); read noise 1.4 e- in 12-bit at 24 dB analogue \
 gain; dark current 0.043 e-/p/s at +20 C (lower when cooled to -5 C air / -40 \
@@ -45161,7 +45150,7 @@ $CellContext`scatteringRate], $CellContext`cloudFWHM = 2.8};
    Deployed->True,
    StripOnInput->False],
   Manipulate`InterpretManipulate[1]]], "Output",
- CellLabel->"Out[16]=",ExpressionUUID->"fa3b739b-89b2-4138-b97c-67a6d032b029"]
+ CellLabel->"Out[16]=",ExpressionUUID->"2e68049b-89dd-4f5d-8009-bc62f915c739"]
 }, Open  ]]
 }, Open  ]],
 
@@ -45169,7 +45158,7 @@ Cell[CellGroupData[{
 
 Cell["\<\
 7. Evaluation Dataset: Minimum Number of Molecules for SNR = 3 and SNR = 10\
-\>", "Section",ExpressionUUID->"21748956-701c-47aa-967d-53dbe6de7918"],
+\>", "Section",ExpressionUUID->"e34c3ab5-62eb-44e4-bd3d-ffb58463938b"],
 
 Cell["\<\
 Closed-form minimum number of molecules in the MOT (20 ms exposure, 4x \
@@ -45177,7 +45166,7 @@ baseline scatter, 1e6 photons/s per molecule) for every camera, quoted \
 readout mode and benchmark binning, together with the equivalent signal \
 photons in the aperture and the molecule number at which the peak superpixel \
 saturates.\
-\>", "Text",ExpressionUUID->"0f360efb-afbd-420c-a999-a579130c755f"],
+\>", "Text",ExpressionUUID->"c11696a1-dc5b-4409-a5a3-517f2f97fce9"],
 
 Cell[CellGroupData[{
 
@@ -45282,7 +45271,7 @@ Cell[BoxData[
        RowBox[{"{", 
         RowBox[{"binFactor", ",", " ", "benchmarkBins"}], "}"}]}], "]"}], ",",
       " ", "2"}], "]"}], "]"}]}]], "Input",
- CellLabel->"In[17]:=",ExpressionUUID->"a92b32e2-14cd-40e9-939e-4bcdcccbe986"],
+ CellLabel->"In[17]:=",ExpressionUUID->"a840e198-cb42-436f-a54a-81cbfd27e729"],
 
 Cell[BoxData[
  TagBox[
@@ -48915,12 +48904,12 @@ lastPathIsLeafHeader, TypeSystem`NestedGrid`PackagePrivate`headerHidden$ = And[
   Editable->False,
   SelectWithContents->True,
   Selectable->False]], "Output",
- CellLabel->"Out[17]=",ExpressionUUID->"56ebedb5-2b0b-42c4-9eaf-44d2f12f0e2d"]
+ CellLabel->"Out[17]=",ExpressionUUID->"84a32e53-2cf8-461b-a5af-60449ae44f41"]
 }, Open  ]],
 
 Cell["\<\
 Ranking at 1x1 binning in the primary readout mode (lower is better).\
-\>", "Text",ExpressionUUID->"305e7f58-76bc-4b23-abf9-2a3ef0c8861d"],
+\>", "Text",ExpressionUUID->"2aa5a3f9-8b35-4919-a62f-5f697d975054"],
 
 Cell[CellGroupData[{
 
@@ -48944,7 +48933,7 @@ Cell[BoxData[
      " ", "\"\<nMol (SNR=3)\>\"", ",", " ", "\"\<nMol (SNR=10)\>\"", ",", 
      " ", "\"\<Saturation nMol\>\"", ",", " ", "\"\<nSig (SNR=3)\>\""}], 
     "}"}]}], "]"}]], "Input",
- CellLabel->"In[18]:=",ExpressionUUID->"05f79066-b46b-4c7f-a700-d61c7909adb3"],
+ CellLabel->"In[18]:=",ExpressionUUID->"55bb4de7-9c7c-4602-b800-26e2d429cfd7"],
 
 Cell[BoxData[
  TagBox[
@@ -49996,13 +49985,13 @@ lastPathIsLeafHeader, TypeSystem`NestedGrid`PackagePrivate`headerHidden$ = And[
   Editable->False,
   SelectWithContents->True,
   Selectable->False]], "Output",
- CellLabel->"Out[18]=",ExpressionUUID->"274e45d6-abd2-4188-9c2f-e969a3e68126"]
+ CellLabel->"Out[18]=",ExpressionUUID->"9d8018ff-70ee-4dc5-af17-e201eb714e54"]
 }, Open  ]]
 }, Open  ]],
 
 Cell[CellGroupData[{
 
-Cell["8. Verification Tests", "Section",ExpressionUUID->"9dd33e0d-f971-4336-9682-2855058e678a"],
+Cell["8. Verification Tests", "Section",ExpressionUUID->"d21e1ec3-d50b-4a0a-8745-d7022b92e961"],
 
 Cell["\<\
 Automated assertions run by the generator script: collection geometry, \
@@ -50010,7 +49999,7 @@ read-noise binning rules, synthetic frame dimensions against the ROI \
 calculation, consistency of the closed-form threshold with the SNR function, \
 physical monotonicity, and absence of global-scope leakage from the dashboard \
 code.\
-\>", "Text",ExpressionUUID->"70430f66-287f-4d4b-9e9c-749fd7ef335a"],
+\>", "Text",ExpressionUUID->"2e3a7686-c22a-4be0-a813-74f7ec72a54a"],
 
 Cell[CellGroupData[{
 
@@ -50990,7 +50979,7 @@ Cell[BoxData[{
       "]"}]}], "}"}]}], ";"}], "\n", 
  RowBox[{"verificationReport", " ", "=", " ", 
   RowBox[{"TestReport", "[", "verificationTests", "]"}]}]}], "Input",
- CellLabel->"In[19]:=",ExpressionUUID->"6cc68cc2-4c53-404d-a150-3367dd5fe827"],
+ CellLabel->"In[19]:=",ExpressionUUID->"8736f6ce-3366-430b-9de9-85f52448632d"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -51116,9 +51105,9 @@ Cell[BoxData[
                  TagBox[
                   
                   TemplateBox[{
-                   "1.2761049999999999998`4.643617551425683", "\"s\"", 
-                    "seconds", "\"Seconds\""}, "Quantity", SyntaxForm -> Mod],
-                   "SummaryItem"]}], "\[SpanFromLeft]"}}, 
+                   "1.224218`4.625589901868631", "\"s\"", "seconds", 
+                    "\"Seconds\""}, "Quantity", SyntaxForm -> Mod], 
+                  "SummaryItem"]}], "\[SpanFromLeft]"}}, 
              GridBoxAlignment -> {
               "Columns" -> {{Left}}, "Rows" -> {{Automatic}}}, AutoDelete -> 
              False, GridBoxItemSize -> {
@@ -51138,116 +51127,115 @@ Cell[BoxData[
   TestReportObject[<|
    "Title" -> Automatic, "Aborted" -> False, 
     "TestResults" -> <|
-     7214853587664763121 -> 
+     2637860511221597257 -> 
       TestObject[<|
         "MetaInformation" -> None, "AbsoluteTime" -> 
-         3.998991740859473`15.655555492007506*^9, "SameTest" -> SameQ, 
+         3.998992051754214`15.655555525770982*^9, "SameTest" -> SameQ, 
          "SameMessages" -> Testing`MessageMatchQ, "MemoryConstraint" -> 
          DirectedInfinity[1], "TimeConstraint" -> DirectedInfinity[1], 
-         "CreationID" -> "1e6da0f9-8374-4414-bd36-ac353d0f8714", "TestID" -> 
+         "CreationID" -> "0d912134-04e9-4518-9f28-93740326f744", "TestID" -> 
          "GeometricEfficiencyUnvignetted", "TestFileName" -> "", 
-         "EvaluationID" -> "37460dc4-bc04-42c7-a097-66c54c1198df", "Input" -> 
+         "EvaluationID" -> "72143ed0-a515-4c13-afd2-0d2472a243e1", "Input" -> 
          HoldForm[
           Abs[$CellContext`geometricEfficiencyUnvignetted - 0.0559] < 0.001], 
          "ExpectedMessages" -> HoldForm[{}], "ActualOutput" -> HoldForm[True],
           "ActualMessages" -> {}, "AbsoluteTimeUsed" -> 
-         0.000042`1.773764288229892, "CPUTimeUsed" -> 0.00003899999999923409, 
+         0.000045`1.803727511607338, "CPUTimeUsed" -> 0.00004099999999951365, 
          "MemoryUsed" -> 3464, "IntermediateTestsTree" -> {}, 
          "ExpectedOutput" -> HoldForm[True], "Outcome" -> "Success", 
-         "FailureType" -> None|>], 7423455146097721789 -> 
+         "FailureType" -> None|>], 8041796540442203323 -> 
       TestObject[<|
         "MetaInformation" -> None, "AbsoluteTime" -> 
-         3.998991740879029`15.655555492009627*^9, "SameTest" -> SameQ, 
+         3.998992051771411`15.65555552577285*^9, "SameTest" -> SameQ, 
          "SameMessages" -> Testing`MessageMatchQ, "MemoryConstraint" -> 
          DirectedInfinity[1], "TimeConstraint" -> DirectedInfinity[1], 
-         "CreationID" -> "9f43bbd0-3708-4c1a-8d07-4705c1da944e", "TestID" -> 
+         "CreationID" -> "2a4c8ed8-352d-4b84-a57f-987fbf72a7c4", "TestID" -> 
          "SolidAngleUnvignetted", "TestFileName" -> "", "EvaluationID" -> 
-         "d9d20d79-d112-4268-a778-5b78d8711a94", "Input" -> 
+         "fced8e05-783c-4b49-915e-66cfda32fde3", "Input" -> 
          HoldForm[
           Abs[$CellContext`solidAngleCollection[$CellContext`workingDistance, \
 $CellContext`collectorRadius] - 0.7025] < 0.001], "ExpectedMessages" -> 
          HoldForm[{}], "ActualOutput" -> HoldForm[True], 
          "ActualMessages" -> {}, "AbsoluteTimeUsed" -> 
-         0.000036`1.7068174985992763, "CPUTimeUsed" -> 
-         0.000036999999999842714`, "MemoryUsed" -> 3880, 
-         "IntermediateTestsTree" -> {}, "ExpectedOutput" -> HoldForm[True], 
-         "Outcome" -> "Success", "FailureType" -> None|>], 
-      8943802480280674680 -> 
+         0.000039`1.7415796048584933, "CPUTimeUsed" -> 0.00004000000000026205,
+          "MemoryUsed" -> 3880, "IntermediateTestsTree" -> {}, 
+         "ExpectedOutput" -> HoldForm[True], "Outcome" -> "Success", 
+         "FailureType" -> None|>], 2004101323174303072 -> 
       TestObject[<|
         "MetaInformation" -> None, "AbsoluteTime" -> 
-         3.99899174087917`15.655555492009645*^9, "SameTest" -> SameQ, 
+         3.998992051771556`15.655555525772865*^9, "SameTest" -> SameQ, 
          "SameMessages" -> Testing`MessageMatchQ, "MemoryConstraint" -> 
          DirectedInfinity[1], "TimeConstraint" -> DirectedInfinity[1], 
-         "CreationID" -> "a348225f-6114-436a-b7b3-05d3f61aeb29", "TestID" -> 
+         "CreationID" -> "1962d6ec-7ab4-43dd-be7a-635bb6cea694", "TestID" -> 
          "GeometricEfficiencyVignetted", "TestFileName" -> "", "EvaluationID" -> 
-         "8fa124c7-7f20-4f9d-ba79-efad7c099a51", "Input" -> 
+         "294df0f8-70ba-4aba-b182-a73d19a4193b", "Input" -> 
          HoldForm[Abs[$CellContext`geometricEfficiency - 0.0369] < 0.001], 
          "ExpectedMessages" -> HoldForm[{}], "ActualOutput" -> HoldForm[True],
           "ActualMessages" -> {}, "AbsoluteTimeUsed" -> 
-         0.000021`1.4727342925659104, "CPUTimeUsed" -> 0.00002200000000041058,
-          "MemoryUsed" -> 3400, "IntermediateTestsTree" -> {}, 
+         0.000022`1.4929376786541977, "CPUTimeUsed" -> 0.0000219999999995224, 
+         "MemoryUsed" -> 3400, "IntermediateTestsTree" -> {}, 
          "ExpectedOutput" -> HoldForm[True], "Outcome" -> "Success", 
-         "FailureType" -> None|>], 4159171881232710090 -> 
+         "FailureType" -> None|>], 7276811882507851184 -> 
       TestObject[<|
         "MetaInformation" -> None, "AbsoluteTime" -> 
-         3.998991740879284`15.655555492009658*^9, "SameTest" -> SameQ, 
+         3.998992051771672`15.655555525772877*^9, "SameTest" -> SameQ, 
          "SameMessages" -> Testing`MessageMatchQ, "MemoryConstraint" -> 
          DirectedInfinity[1], "TimeConstraint" -> DirectedInfinity[1], 
-         "CreationID" -> "382f1595-f5d3-4cf5-b36a-6d0f00eb7d06", "TestID" -> 
+         "CreationID" -> "edfa7178-a271-4a89-af11-99d940834fb0", "TestID" -> 
          "LimitingApertureIsImagingLens", "TestFileName" -> "", 
-         "EvaluationID" -> "544d2b63-dd21-43d4-9012-af6b82d46e69", "Input" -> 
+         "EvaluationID" -> "0eb4c502-3d7e-4054-9911-db4a9ef5902d", "Input" -> 
          HoldForm[$CellContext`limitingElement], "ExpectedMessages" -> 
          HoldForm[{}], "ActualOutput" -> HoldForm["Comar 29 AF 40"], 
          "ActualMessages" -> {}, "AbsoluteTimeUsed" -> 
-         0.000018`1.4057875029353, "CPUTimeUsed" -> 0.000018999999999991246`, 
-         "MemoryUsed" -> 3392, "IntermediateTestsTree" -> {}, 
-         "ExpectedOutput" -> HoldForm["Comar 29 AF 40"], "Outcome" -> 
-         "Success", "FailureType" -> None|>], 383852198558064997 -> 
+         0.000019`1.429268598784821, "CPUTimeUsed" -> 
+         0.000020000000000131024`, "MemoryUsed" -> 3392, 
+         "IntermediateTestsTree" -> {}, "ExpectedOutput" -> 
+         HoldForm["Comar 29 AF 40"], "Outcome" -> "Success", "FailureType" -> 
+         None|>], 5757061672249376892 -> 
       TestObject[<|
         "MetaInformation" -> None, "AbsoluteTime" -> 
-         3.998991740879393`15.655555492009666*^9, "SameTest" -> SameQ, 
+         3.998992051771778`15.65555552577289*^9, "SameTest" -> SameQ, 
          "SameMessages" -> Testing`MessageMatchQ, "MemoryConstraint" -> 
          DirectedInfinity[1], "TimeConstraint" -> DirectedInfinity[1], 
-         "CreationID" -> "a5a5f485-3209-4ee0-a71f-a755ef15909f", "TestID" -> 
+         "CreationID" -> "ad3c9e29-c201-41db-88aa-8c83d610c6b0", "TestID" -> 
          "Magnification", "TestFileName" -> "", "EvaluationID" -> 
-         "b881169d-41ed-4b20-a91e-907a56f86daf", "Input" -> HoldForm[
+         "c72c87de-8708-4218-9aab-edad74e9d09a", "Input" -> HoldForm[
            And[
            Abs[$CellContext`magnification - 28.6/59.8] < 10^(-9), 
             Abs[$CellContext`magnification - 0.4783] < 0.001]], 
          "ExpectedMessages" -> HoldForm[{}], "ActualOutput" -> HoldForm[True],
           "ActualMessages" -> {}, "AbsoluteTimeUsed" -> 
-         0.000021`1.4727342925659115, "CPUTimeUsed" -> 
-         0.000021000000000270802`, "MemoryUsed" -> 3400, 
-         "IntermediateTestsTree" -> {}, "ExpectedOutput" -> HoldForm[True], 
-         "Outcome" -> "Success", "FailureType" -> None|>], 
-      6136005952820079602 -> 
+         0.000021`1.4727342925659135, "CPUTimeUsed" -> 0.0000219999999995224, 
+         "MemoryUsed" -> 3400, "IntermediateTestsTree" -> {}, 
+         "ExpectedOutput" -> HoldForm[True], "Outcome" -> "Success", 
+         "FailureType" -> None|>], 8636663318155060525 -> 
       TestObject[<|
         "MetaInformation" -> None, "AbsoluteTime" -> 
-         3.9989917408795`15.655555492009679*^9, "SameTest" -> SameQ, 
+         3.998992051771889`15.655555525772902*^9, "SameTest" -> SameQ, 
          "SameMessages" -> Testing`MessageMatchQ, "MemoryConstraint" -> 
          DirectedInfinity[1], "TimeConstraint" -> DirectedInfinity[1], 
-         "CreationID" -> "c8efb781-b0bd-46f3-8682-9e49fb8d290b", "TestID" -> 
+         "CreationID" -> "c0327d11-9c0f-486a-b515-98c574e8f2d0", "TestID" -> 
          "ObjectSpacePitch", "TestFileName" -> "", "EvaluationID" -> 
-         "1e476c55-8452-48f9-bda3-63518e3d892c", "Input" -> 
+         "0672384b-bd76-44c2-8a06-c61fd8c80cad", "Input" -> 
          HoldForm[Abs[$CellContext`superpixelPitch[
                $CellContext`cameraDatabase[
                "Thorlabs Zelux CS165MU (Compact CMOS)"], 1] - 
              3.45/$CellContext`magnification] < 10^(-9)], "ExpectedMessages" -> 
          HoldForm[{}], "ActualOutput" -> HoldForm[True], 
          "ActualMessages" -> {}, "AbsoluteTimeUsed" -> 
-         0.000023`1.5122428338495828, "CPUTimeUsed" -> 
-         0.000023999999999801958`, "MemoryUsed" -> 3400, 
+         0.000024`1.5307262395435977, "CPUTimeUsed" -> 
+         0.000024999999999941735`, "MemoryUsed" -> 3400, 
          "IntermediateTestsTree" -> {}, "ExpectedOutput" -> HoldForm[True], 
          "Outcome" -> "Success", "FailureType" -> None|>], 
-      7556155921729194372 -> 
+      2392503506815596873 -> 
       TestObject[<|
         "MetaInformation" -> None, "AbsoluteTime" -> 
-         3.998991740879608`15.655555492009693*^9, "SameTest" -> SameQ, 
+         3.998992051772`15.655555525772916*^9, "SameTest" -> SameQ, 
          "SameMessages" -> Testing`MessageMatchQ, "MemoryConstraint" -> 
          DirectedInfinity[1], "TimeConstraint" -> DirectedInfinity[1], 
-         "CreationID" -> "ac9927b4-3bcf-4255-9119-a9ecf3539046", "TestID" -> 
+         "CreationID" -> "55d73442-9792-49c4-ba7e-c7cf3250bd70", "TestID" -> 
          "BackgroundUsesSensorAreaNotObjectArea", "TestFileName" -> "", 
-         "EvaluationID" -> "b6b6548f-d261-4283-b9d2-1beb641a640d", "Input" -> 
+         "EvaluationID" -> "6d230319-b9d8-4424-9896-e224a59de105", "Input" -> 
          HoldForm[
            
            Module[{$CellContext`cam = $CellContext`cameraDatabase[
@@ -51257,159 +51245,158 @@ $CellContext`collectorRadius] - 0.7025] < 0.001], "ExpectedMessages" ->
               0.02 $CellContext`cam["QE"]] < 10^(-9)]], "ExpectedMessages" -> 
          HoldForm[{}], "ActualOutput" -> HoldForm[True], 
          "ActualMessages" -> {}, "AbsoluteTimeUsed" -> 
-         0.000031`1.6418766916662664, "CPUTimeUsed" -> 0.0000310000000007804, 
-         "MemoryUsed" -> 3400, "IntermediateTestsTree" -> {}, 
-         "ExpectedOutput" -> HoldForm[True], "Outcome" -> "Success", 
-         "FailureType" -> None|>], 4056044633056378263 -> 
+         0.000035`1.6945830421822654, "CPUTimeUsed" -> 
+         0.000035999999999702936`, "MemoryUsed" -> 3400, 
+         "IntermediateTestsTree" -> {}, "ExpectedOutput" -> HoldForm[True], 
+         "Outcome" -> "Success", "FailureType" -> None|>], 
+      2620226850625027546 -> 
       TestObject[<|
         "MetaInformation" -> None, "AbsoluteTime" -> 
-         3.998991740879723`15.655555492009706*^9, "SameTest" -> SameQ, 
+         3.998992051772122`15.655555525772924*^9, "SameTest" -> SameQ, 
          "SameMessages" -> Testing`MessageMatchQ, "MemoryConstraint" -> 
          DirectedInfinity[1], "TimeConstraint" -> DirectedInfinity[1], 
-         "CreationID" -> "444b045c-ad29-4124-bd8d-6f5d4cf7f76f", "TestID" -> 
+         "CreationID" -> "7e14e8a2-1b48-4e90-b135-ab60b75910c0", "TestID" -> 
          "BackgroundFluxDensity", "TestFileName" -> "", "EvaluationID" -> 
-         "e1c1fd3e-ee57-4127-bb01-5d0e4aa58a25", "Input" -> 
+         "6a059eae-effe-4fed-bdce-c58ee47bf507", "Input" -> 
          HoldForm[
           Abs[$CellContext`backgroundFluxDensity[4.] - 3.6923] < 0.001], 
          "ExpectedMessages" -> HoldForm[{}], "ActualOutput" -> HoldForm[True],
           "ActualMessages" -> {}, "AbsoluteTimeUsed" -> 
-         0.000018`1.4057875029352978, "CPUTimeUsed" -> 
-         0.000018000000000739647`, "MemoryUsed" -> 3400, 
-         "IntermediateTestsTree" -> {}, "ExpectedOutput" -> HoldForm[True], 
-         "Outcome" -> "Success", "FailureType" -> None|>], 
-      8068058770105729661 -> 
+         0.000034`1.6819939148742447, "CPUTimeUsed" -> 0.00003300000000017178,
+          "MemoryUsed" -> 3400, "IntermediateTestsTree" -> {}, 
+         "ExpectedOutput" -> HoldForm[True], "Outcome" -> "Success", 
+         "FailureType" -> None|>], 7234403529200285960 -> 
       TestObject[<|
         "MetaInformation" -> None, "AbsoluteTime" -> 
-         3.998991740879823`15.655555492009714*^9, "SameTest" -> SameQ, 
+         3.99899205177229`15.655555525772945*^9, "SameTest" -> SameQ, 
          "SameMessages" -> Testing`MessageMatchQ, "MemoryConstraint" -> 
          DirectedInfinity[1], "TimeConstraint" -> DirectedInfinity[1], 
-         "CreationID" -> "b171479b-9acd-4d57-bf99-c937f961cb94", "TestID" -> 
+         "CreationID" -> "e0577006-49ed-4888-9dfd-cea0261eb984", "TestID" -> 
          "ApertureArea", "TestFileName" -> "", "EvaluationID" -> 
-         "6b2c7afa-071d-45a6-9025-192a7ba2dac8", "Input" -> 
+         "3bef3878-4a93-46b6-82e1-30b76671ecf9", "Input" -> 
          HoldForm[Abs[$CellContext`apertureAreaMicron - 1.7766*^7] < 20000], 
          "ExpectedMessages" -> HoldForm[{}], "ActualOutput" -> HoldForm[True],
           "ActualMessages" -> {}, "AbsoluteTimeUsed" -> 
-         0.000017`1.380963919210265, "CPUTimeUsed" -> 
-         0.000018000000000739647`, "MemoryUsed" -> 3400, 
-         "IntermediateTestsTree" -> {}, "ExpectedOutput" -> HoldForm[True], 
-         "Outcome" -> "Success", "FailureType" -> None|>], 
-      6393861313532918676 -> 
+         0.000023`1.512242833849586, "CPUTimeUsed" -> 0.00002200000000041058, 
+         "MemoryUsed" -> 3400, "IntermediateTestsTree" -> {}, 
+         "ExpectedOutput" -> HoldForm[True], "Outcome" -> "Success", 
+         "FailureType" -> None|>], 4150042363373374470 -> 
       TestObject[<|
         "MetaInformation" -> None, "AbsoluteTime" -> 
-         3.998991740879921`15.655555492009727*^9, "SameTest" -> SameQ, 
+         3.998992051772419`15.655555525772959*^9, "SameTest" -> SameQ, 
          "SameMessages" -> Testing`MessageMatchQ, "MemoryConstraint" -> 
          DirectedInfinity[1], "TimeConstraint" -> DirectedInfinity[1], 
-         "CreationID" -> "fa6c07fe-bb7a-402b-a869-c347df56ea8b", "TestID" -> 
+         "CreationID" -> "022cc1ba-df70-4a48-a669-b010a4b8ada2", "TestID" -> 
          "CloudSize", "TestFileName" -> "", "EvaluationID" -> 
-         "cec44353-82c3-48d7-a079-03a9957b8a5a", "Input" -> HoldForm[
+         "a773ab20-bb7d-47d8-b662-f4505455bcba", "Input" -> HoldForm[
            And[
            Abs[$CellContext`cloudFWHM - 2.8] < 10^(-9), 
             Abs[$CellContext`sigmaCloud - 1.18903] < 10^(-4)]], 
          "ExpectedMessages" -> HoldForm[{}], "ActualOutput" -> HoldForm[True],
           "ActualMessages" -> {}, "AbsoluteTimeUsed" -> 
-         0.000019`1.4292685987848202, "CPUTimeUsed" -> 
-         0.000020000000000131024`, "MemoryUsed" -> 3400, 
-         "IntermediateTestsTree" -> {}, "ExpectedOutput" -> HoldForm[True], 
-         "Outcome" -> "Success", "FailureType" -> None|>], 1748818868047789 -> 
+         0.000023`1.512242833849585, "CPUTimeUsed" -> 0.00002299999999966218, 
+         "MemoryUsed" -> 3400, "IntermediateTestsTree" -> {}, 
+         "ExpectedOutput" -> HoldForm[True], "Outcome" -> "Success", 
+         "FailureType" -> None|>], 3079181598882982752 -> 
       TestObject[<|
         "MetaInformation" -> None, "AbsoluteTime" -> 
-         3.998991740880023`15.65555549200974*^9, "SameTest" -> SameQ, 
+         3.99899205177254`15.655555525772971*^9, "SameTest" -> SameQ, 
          "SameMessages" -> Testing`MessageMatchQ, "MemoryConstraint" -> 
          DirectedInfinity[1], "TimeConstraint" -> DirectedInfinity[1], 
-         "CreationID" -> "b3938d76-8822-4796-bd46-742b296eb29f", "TestID" -> 
+         "CreationID" -> "33f9e481-c399-4604-8491-0e6b78420c29", "TestID" -> 
          "ApertureSignalFraction", "TestFileName" -> "", "EvaluationID" -> 
-         "e2c499b8-f090-4561-b9c6-05cc63bc8165", "Input" -> 
+         "33c7ca3f-bd18-4b68-b091-230cf116b621", "Input" -> 
          HoldForm[
           Abs[$CellContext`apertureSignalFraction - (1 - Exp[-2.])] < 
            10^(-9)], "ExpectedMessages" -> HoldForm[{}], "ActualOutput" -> 
          HoldForm[True], "ActualMessages" -> {}, "AbsoluteTimeUsed" -> 
-         0.00002`1.4515449934959728, "CPUTimeUsed" -> 
-         0.000018999999999991246`, "MemoryUsed" -> 3400, 
+         0.000022`1.4929376786541977, "CPUTimeUsed" -> 
+         0.000023000000000550358`, "MemoryUsed" -> 3400, 
          "IntermediateTestsTree" -> {}, "ExpectedOutput" -> HoldForm[True], 
          "Outcome" -> "Success", "FailureType" -> None|>], 
-      7564518787104449917 -> 
+      6233771126132733014 -> 
       TestObject[<|
         "MetaInformation" -> None, "AbsoluteTime" -> 
-         3.998991740880121`15.655555492009748*^9, "SameTest" -> SameQ, 
+         3.998992051772654`15.655555525772984*^9, "SameTest" -> SameQ, 
          "SameMessages" -> Testing`MessageMatchQ, "MemoryConstraint" -> 
          DirectedInfinity[1], "TimeConstraint" -> DirectedInfinity[1], 
-         "CreationID" -> "72a825c2-1bda-4df1-94b2-9bb2fc1e2af9", "TestID" -> 
+         "CreationID" -> "8de94380-5509-49e8-b8f9-f600259e0e2d", "TestID" -> 
          "ReadNoiseHardwareBinningORCAR2", "TestFileName" -> "", 
-         "EvaluationID" -> "737bdb44-c44a-4427-8429-3754c0c99698", "Input" -> 
+         "EvaluationID" -> "7dc65bee-5bc5-4898-9ca2-6ec41b654ba6", "Input" -> 
          HoldForm[
            $CellContext`effectiveReadNoise[
             $CellContext`cameraDatabase[
             "Hamamatsu ORCA-R2 (Cooled CCD C10600-10B)"], 4]], 
          "ExpectedMessages" -> HoldForm[{}], "ActualOutput" -> HoldForm[6.], 
          "ActualMessages" -> {}, "AbsoluteTimeUsed" -> 
-         0.000023`1.5122428338495828, "CPUTimeUsed" -> 0.0000219999999995224, 
-         "MemoryUsed" -> 3464, "IntermediateTestsTree" -> {}, 
-         "ExpectedOutput" -> HoldForm[6.], "Outcome" -> "Success", 
-         "FailureType" -> None|>], 7538208061891039061 -> 
+         0.000025`1.5484550065040283, "CPUTimeUsed" -> 
+         0.000026000000000081513`, "MemoryUsed" -> 3464, 
+         "IntermediateTestsTree" -> {}, "ExpectedOutput" -> HoldForm[6.], 
+         "Outcome" -> "Success", "FailureType" -> None|>], 
+      6590422918485900831 -> 
       TestObject[<|
         "MetaInformation" -> None, "AbsoluteTime" -> 
-         3.998991740880223`15.65555549200976*^9, "SameTest" -> SameQ, 
+         3.998992051772768`15.655555525772996*^9, "SameTest" -> SameQ, 
          "SameMessages" -> Testing`MessageMatchQ, "MemoryConstraint" -> 
          DirectedInfinity[1], "TimeConstraint" -> DirectedInfinity[1], 
-         "CreationID" -> "44b50c28-a908-4f17-b0aa-fdde14a869e7", "TestID" -> 
+         "CreationID" -> "fb4503e7-aff4-4084-993f-02d4a8a968ae", "TestID" -> 
          "ReadNoiseSoftwareBinningZelux", "TestFileName" -> "", 
-         "EvaluationID" -> "b4d78d5c-0dbc-4711-a566-2b3da5d1e166", "Input" -> 
+         "EvaluationID" -> "bcb02b64-f046-4ed0-b8c4-144a3148546a", "Input" -> 
          HoldForm[
            $CellContext`effectiveReadNoise[
             $CellContext`cameraDatabase[
             "Thorlabs Zelux CS165MU (Compact CMOS)"], 4]], "ExpectedMessages" -> 
          HoldForm[{}], "ActualOutput" -> HoldForm[16.], 
          "ActualMessages" -> {}, "AbsoluteTimeUsed" -> 
-         0.00002`1.4515449934959728, "CPUTimeUsed" -> 
-         0.000021000000000270802`, "MemoryUsed" -> 3480, 
+         0.000023`1.512242833849585, "CPUTimeUsed" -> 
+         0.000023999999999801958`, "MemoryUsed" -> 3480, 
          "IntermediateTestsTree" -> {}, "ExpectedOutput" -> HoldForm[16.], 
          "Outcome" -> "Success", "FailureType" -> None|>], 
-      5612563556233457582 -> 
+      8393164464096239137 -> 
       TestObject[<|
         "MetaInformation" -> None, "AbsoluteTime" -> 
-         3.998991740880324`15.65555549200977*^9, "SameTest" -> SameQ, 
+         3.998992051772878`15.65555552577301*^9, "SameTest" -> SameQ, 
          "SameMessages" -> Testing`MessageMatchQ, "MemoryConstraint" -> 
          DirectedInfinity[1], "TimeConstraint" -> DirectedInfinity[1], 
-         "CreationID" -> "5c107479-effc-4ecd-8456-5a811f0f2a1e", "TestID" -> 
+         "CreationID" -> "0540c121-725f-46b5-b61e-c5282e2a829f", "TestID" -> 
          "ReadNoiseSoftwareBinningQuestStandardMode", "TestFileName" -> "", 
-         "EvaluationID" -> "43e2f680-08c2-4fec-98e4-15e6cc6617a7", "Input" -> 
+         "EvaluationID" -> "133cee87-8715-4d39-aa57-b0f9685474a8", "Input" -> 
          HoldForm[
            $CellContext`effectiveReadNoise[
             $CellContext`cameraDatabase[
             "Hamamatsu ORCA-Quest 2 (qCMOS C15550-22UP)"], 2, 0.43]], 
          "ExpectedMessages" -> HoldForm[{}], "ActualOutput" -> HoldForm[0.86],
           "ActualMessages" -> {}, "AbsoluteTimeUsed" -> 
-         0.00002`1.4515449934959728, "CPUTimeUsed" -> 
-         0.000020000000000131024`, "MemoryUsed" -> 3480, 
-         "IntermediateTestsTree" -> {}, "ExpectedOutput" -> HoldForm[0.86], 
-         "Outcome" -> "Success", "FailureType" -> None|>], 
-      7477352782024415383 -> 
+         0.000023`1.512242833849584, "CPUTimeUsed" -> 0.000022999999998774, 
+         "MemoryUsed" -> 3480, "IntermediateTestsTree" -> {}, 
+         "ExpectedOutput" -> HoldForm[0.86], "Outcome" -> "Success", 
+         "FailureType" -> None|>], 7780452294824132589 -> 
       TestObject[<|
         "MetaInformation" -> None, "AbsoluteTime" -> 
-         3.998991740880422`15.655555492009782*^9, "SameTest" -> SameQ, 
+         3.998992051772987`15.655555525773023*^9, "SameTest" -> SameQ, 
          "SameMessages" -> Testing`MessageMatchQ, "MemoryConstraint" -> 
          DirectedInfinity[1], "TimeConstraint" -> DirectedInfinity[1], 
-         "CreationID" -> "4eefa33b-1227-47be-8ba4-6a9540efcda4", "TestID" -> 
+         "CreationID" -> "5d7be052-c5aa-4add-9eee-a303120f70dd", "TestID" -> 
          "ReadNoiseHybridBinningCB2", "TestFileName" -> "", "EvaluationID" -> 
-         "cb38edf1-3199-4351-9af2-88c12da920e1", "Input" -> HoldForm[
+         "ece73b96-9b95-4696-a65d-ed632bf4ed12", "Input" -> HoldForm[
            Map[$CellContext`effectiveReadNoise[
              $CellContext`cameraDatabase[
              "Andor CB2 High Speed 7.1F (sCMOS)"], #]& , {1, 2, 4, 8}]], 
          "ExpectedMessages" -> HoldForm[{}], "ActualOutput" -> 
          HoldForm[{1.4, 1.4, 2.8, 5.6}], "ActualMessages" -> {}, 
-         "AbsoluteTimeUsed" -> 0.000028`1.5976730291742114, "CPUTimeUsed" -> 
-         0.00002899999999961267, "MemoryUsed" -> 3600, 
+         "AbsoluteTimeUsed" -> 0.00003`1.6276362525516546, "CPUTimeUsed" -> 
+         0.000030999999999892225`, "MemoryUsed" -> 3600, 
          "IntermediateTestsTree" -> {}, "ExpectedOutput" -> 
          HoldForm[{1.4, 1.4, 2.8, 5.6}], "Outcome" -> "Success", 
-         "FailureType" -> None|>], 7377350992093762983 -> 
+         "FailureType" -> None|>], 6887736754266093746 -> 
       TestObject[<|
         "MetaInformation" -> None, "AbsoluteTime" -> 
-         3.998991740880528`15.65555549200979*^9, "SameTest" -> SameQ, 
+         3.998992051773105`15.655555525773035*^9, "SameTest" -> SameQ, 
          "SameMessages" -> Testing`MessageMatchQ, "MemoryConstraint" -> 
          DirectedInfinity[1], "TimeConstraint" -> DirectedInfinity[1], 
-         "CreationID" -> "1727297c-2cde-441d-b3db-ff2c35354bc5", "TestID" -> 
+         "CreationID" -> "a0f24ab2-705e-4451-8aa9-b0fa7e7e90f1", "TestID" -> 
          "CB2QEAt606nm", "TestFileName" -> "", "EvaluationID" -> 
-         "b9f2e7b4-4cf2-4bd2-bf6d-caf1403803d0", "Input" -> HoldForm[
+         "0bccf952-5c86-432e-9353-36fa3a52ec8f", "Input" -> HoldForm[
            And[
            Abs[$CellContext`cameraDatabase[
                "Andor CB2 High Res (24.5 MP BSI sCMOS)"]["QE"] - 0.62] < 0.03,
@@ -51417,54 +51404,54 @@ $CellContext`collectorRadius] - 0.7025] < 0.001], "ExpectedMessages" ->
                "Andor CB2 High Speed 7.1F (sCMOS)"]["QE"] - 0.68] < 0.03]], 
          "ExpectedMessages" -> HoldForm[{}], "ActualOutput" -> HoldForm[True],
           "ActualMessages" -> {}, "AbsoluteTimeUsed" -> 
-         0.000019`1.429268598784821, "CPUTimeUsed" -> 
-         0.000020000000000131024`, "MemoryUsed" -> 3400, 
-         "IntermediateTestsTree" -> {}, "ExpectedOutput" -> HoldForm[True], 
-         "Outcome" -> "Success", "FailureType" -> None|>], 
-      2072781769051169204 -> 
+         0.000021`1.4727342925659115, "CPUTimeUsed" -> 0.00003200000000092018,
+          "MemoryUsed" -> 3464, "IntermediateTestsTree" -> {}, 
+         "ExpectedOutput" -> HoldForm[True], "Outcome" -> "Success", 
+         "FailureType" -> None|>], 4258247853526443646 -> 
       TestObject[<|
         "MetaInformation" -> None, "AbsoluteTime" -> 
-         3.998991740880626`15.655555492009803*^9, "SameTest" -> SameQ, 
+         3.998992051773227`15.655555525773048*^9, "SameTest" -> SameQ, 
          "SameMessages" -> Testing`MessageMatchQ, "MemoryConstraint" -> 
          DirectedInfinity[1], "TimeConstraint" -> DirectedInfinity[1], 
-         "CreationID" -> "54e98824-bbc5-4b1b-8575-abc4cdf4ae5d", "TestID" -> 
+         "CreationID" -> "a956dce6-68d9-4b26-9915-7f3b1b39e784", "TestID" -> 
          "AllCamerasHaveHardwareBinLimit", "TestFileName" -> "", 
-         "EvaluationID" -> "1b96af0b-85ed-4fb4-a2c9-cfa8601850b6", "Input" -> 
+         "EvaluationID" -> "5fe25a15-a839-430a-8b6a-867e59fa9c65", "Input" -> 
          HoldForm[
            Apply[And, 
             Map[KeyExistsQ[#, "HardwareBinLimit"]& , 
              Values[$CellContext`cameraDatabase]]]], "ExpectedMessages" -> 
          HoldForm[{}], "ActualOutput" -> HoldForm[True], 
          "ActualMessages" -> {}, "AbsoluteTimeUsed" -> 
-         0.000032`1.6556649761518978, "CPUTimeUsed" -> 0.00003300000000017178,
-          "MemoryUsed" -> 3464, "IntermediateTestsTree" -> {}, 
-         "ExpectedOutput" -> HoldForm[True], "Outcome" -> "Success", 
-         "FailureType" -> None|>], 4817411397007791920 -> 
+         0.000025`1.5484550065040283, "CPUTimeUsed" -> 
+         0.000023999999999801958`, "MemoryUsed" -> 3400, 
+         "IntermediateTestsTree" -> {}, "ExpectedOutput" -> HoldForm[True], 
+         "Outcome" -> "Success", "FailureType" -> None|>], 
+      1033887342198640053 -> 
       TestObject[<|
         "MetaInformation" -> None, "AbsoluteTime" -> 
-         3.998991740880739`15.655555492009816*^9, "SameTest" -> SameQ, 
+         3.998992051773337`15.65555552577306*^9, "SameTest" -> SameQ, 
          "SameMessages" -> Testing`MessageMatchQ, "MemoryConstraint" -> 
          DirectedInfinity[1], "TimeConstraint" -> DirectedInfinity[1], 
-         "CreationID" -> "ec265d9d-0fea-4adb-90f4-370e9ed6f3d2", "TestID" -> 
+         "CreationID" -> "90eadd65-36c9-4bb0-b8c2-0df9556cac32", "TestID" -> 
          "SuperpixelCountQuest", "TestFileName" -> "", "EvaluationID" -> 
-         "45948c75-2084-4bae-8b71-5c70b361b870", "Input" -> HoldForm[
+         "e29c4427-9331-4a23-b1f9-e0f9847edfbd", "Input" -> HoldForm[
            $CellContext`superpixelCount[
             $CellContext`cameraDatabase[
             "Hamamatsu ORCA-Quest 2 (qCMOS C15550-22UP)"], 1]], 
          "ExpectedMessages" -> HoldForm[{}], "ActualOutput" -> 
          HoldForm[192055], "ActualMessages" -> {}, "AbsoluteTimeUsed" -> 
-         0.000023`1.512242833849585, "CPUTimeUsed" -> 0.00002200000000041058, 
-         "MemoryUsed" -> 3480, "IntermediateTestsTree" -> {}, 
+         0.000024`1.5307262395435983, "CPUTimeUsed" -> 0.00002299999999966218,
+          "MemoryUsed" -> 3480, "IntermediateTestsTree" -> {}, 
          "ExpectedOutput" -> HoldForm[192055], "Outcome" -> "Success", 
-         "FailureType" -> None|>], 5448700928890717403 -> 
+         "FailureType" -> None|>], 5995345871829400948 -> 
       TestObject[<|
         "MetaInformation" -> None, "AbsoluteTime" -> 
-         3.998991740880842`15.655555492009825*^9, "SameTest" -> SameQ, 
+         3.998992051773446`15.65555552577307*^9, "SameTest" -> SameQ, 
          "SameMessages" -> Testing`MessageMatchQ, "MemoryConstraint" -> 
          DirectedInfinity[1], "TimeConstraint" -> DirectedInfinity[1], 
-         "CreationID" -> "c87d53d4-45ff-4125-80fe-5391b603a53f", "TestID" -> 
+         "CreationID" -> "95d2c0f6-042a-44f2-9ced-618184dea147", "TestID" -> 
          "FrameDimensionsBin1", "TestFileName" -> "", "EvaluationID" -> 
-         "8692f79d-48cd-4490-8be2-3a0c960678ee", "Input" -> HoldForm[
+         "6403522c-5e77-4739-a1eb-77e5db57b60c", "Input" -> HoldForm[
            Map[Dimensions[
               $CellContext`syntheticFrame[
                $CellContext`cameraDatabase[#], 1, 10.^4, 0.02, 4., 
@@ -51474,19 +51461,19 @@ $CellContext`collectorRadius] - 0.7025] < 0.001], "ExpectedMessages" ->
          HoldForm[{}], "ActualOutput" -> 
          HoldForm[{True, True, True, True, True, True, True}], 
          "ActualMessages" -> {}, "AbsoluteTimeUsed" -> 
-         0.348328`5.692503384023604, "CPUTimeUsed" -> 1.5654279999999998`, 
+         0.333218`5.673243451219592, "CPUTimeUsed" -> 1.4720240000000002`, 
          "MemoryUsed" -> 583040, "IntermediateTestsTree" -> {}, 
          "ExpectedOutput" -> 
          HoldForm[{True, True, True, True, True, True, True}], "Outcome" -> 
-         "Success", "FailureType" -> None|>], 6827439633895278648 -> 
+         "Success", "FailureType" -> None|>], 4895921162259034351 -> 
       TestObject[<|
         "MetaInformation" -> None, "AbsoluteTime" -> 
-         3.998991741229364`15.655555492047675*^9, "SameTest" -> SameQ, 
+         3.998992052106855`15.655555525809282*^9, "SameTest" -> SameQ, 
          "SameMessages" -> Testing`MessageMatchQ, "MemoryConstraint" -> 
          DirectedInfinity[1], "TimeConstraint" -> DirectedInfinity[1], 
-         "CreationID" -> "db6a1308-33ff-4458-971a-0daf151566f6", "TestID" -> 
+         "CreationID" -> "5018bab3-cdea-4064-a48b-74627817915e", "TestID" -> 
          "FrameDimensionsBin4", "TestFileName" -> "", "EvaluationID" -> 
-         "e0275808-39cd-4533-871c-265117c61839", "Input" -> HoldForm[
+         "28fb02f5-1484-4351-834f-6707961ea89a", "Input" -> HoldForm[
            Map[Dimensions[
               $CellContext`syntheticFrame[
                $CellContext`cameraDatabase[#], 4, 10.^4, 0.02, 4., 
@@ -51496,53 +51483,53 @@ $CellContext`collectorRadius] - 0.7025] < 0.001], "ExpectedMessages" ->
          HoldForm[{}], "ActualOutput" -> 
          HoldForm[{True, True, True, True, True, True, True}], 
          "ActualMessages" -> {}, "AbsoluteTimeUsed" -> 
-         0.081531`5.061837766929217, "CPUTimeUsed" -> 0.4127200000000002, 
+         0.074212`5.020989133736499, "CPUTimeUsed" -> 0.3604510000000003, 
          "MemoryUsed" -> 3872, "IntermediateTestsTree" -> {}, 
          "ExpectedOutput" -> 
          HoldForm[{True, True, True, True, True, True, True}], "Outcome" -> 
-         "Success", "FailureType" -> None|>], 8390744013378376057 -> 
+         "Success", "FailureType" -> None|>], 426887719428663616 -> 
       TestObject[<|
         "MetaInformation" -> None, "AbsoluteTime" -> 
-         3.998991741311092`15.655555492056552*^9, "SameTest" -> SameQ, 
+         3.998992052181266`15.655555525817363*^9, "SameTest" -> SameQ, 
          "SameMessages" -> Testing`MessageMatchQ, "MemoryConstraint" -> 
          DirectedInfinity[1], "TimeConstraint" -> DirectedInfinity[1], 
-         "CreationID" -> "4b2ce7b5-16d5-45a5-a903-2a2dabcbe193", "TestID" -> 
+         "CreationID" -> "f77a9235-32a3-434e-9934-2b58edc486ef", "TestID" -> 
          "FrameDimensionsZeluxROI", "TestFileName" -> "", "EvaluationID" -> 
-         "db91746d-7df8-430b-afb1-f1ed799a8413", "Input" -> HoldForm[
+         "2fb075aa-0084-48d4-a94b-6df24270df48", "Input" -> HoldForm[
            $CellContext`frameDimensions[
             $CellContext`cameraDatabase[
             "Thorlabs Zelux CS165MU (Compact CMOS)"], 1]], "ExpectedMessages" -> 
          HoldForm[{}], "ActualOutput" -> HoldForm[{1009, 1009}], 
          "ActualMessages" -> {}, "AbsoluteTimeUsed" -> 
-         0.000038`1.7302985944487996, "CPUTimeUsed" -> 0.00004000000000026205,
-          "MemoryUsed" -> 3520, "IntermediateTestsTree" -> {}, 
+         0.000038`1.730298594448804, "CPUTimeUsed" -> 0.00003900000000012227, 
+         "MemoryUsed" -> 3520, "IntermediateTestsTree" -> {}, 
          "ExpectedOutput" -> HoldForm[{1009, 1009}], "Outcome" -> "Success", 
-         "FailureType" -> None|>], 7759010625980624745 -> 
+         "FailureType" -> None|>], 6798909159614509635 -> 
       TestObject[<|
         "MetaInformation" -> None, "AbsoluteTime" -> 
-         3.998991741311261`15.65555549205657*^9, "SameTest" -> SameQ, 
+         3.998992052181436`15.65555552581738*^9, "SameTest" -> SameQ, 
          "SameMessages" -> Testing`MessageMatchQ, "MemoryConstraint" -> 
          DirectedInfinity[1], "TimeConstraint" -> DirectedInfinity[1], 
-         "CreationID" -> "c5a72a04-90ae-4ca9-94c8-7ee1be4acd4d", "TestID" -> 
+         "CreationID" -> "503a3aba-d214-440b-a805-92dcb19895c8", "TestID" -> 
          "FrameDimensionsIXonBin8", "TestFileName" -> "", "EvaluationID" -> 
-         "1059cfcf-7f19-4714-93ba-300c8c2dc904", "Input" -> HoldForm[
+         "9d4cc401-9829-4580-a80e-b2da4b79905a", "Input" -> HoldForm[
            $CellContext`frameDimensions[
             $CellContext`cameraDatabase[
             "Andor iXon Ultra 888 (EMCCD Benchmark)"], 8]], 
          "ExpectedMessages" -> HoldForm[{}], "ActualOutput" -> 
          HoldForm[{33, 33}], "ActualMessages" -> {}, "AbsoluteTimeUsed" -> 
-         0.000032`1.6556649761518978, "CPUTimeUsed" -> 0.0000329999999992836, 
+         0.000031`1.6418766916662644, "CPUTimeUsed" -> 0.0000310000000007804, 
          "MemoryUsed" -> 3520, "IntermediateTestsTree" -> {}, 
          "ExpectedOutput" -> HoldForm[{33, 33}], "Outcome" -> "Success", 
-         "FailureType" -> None|>], 9163190079328351153 -> 
+         "FailureType" -> None|>], 7616897495927180680 -> 
       TestObject[<|
         "MetaInformation" -> None, "AbsoluteTime" -> 
-         3.998991741311397`15.655555492056587*^9, "SameTest" -> SameQ, 
+         3.998992052181571`15.655555525817393*^9, "SameTest" -> SameQ, 
          "SameMessages" -> Testing`MessageMatchQ, "MemoryConstraint" -> 
          DirectedInfinity[1], "TimeConstraint" -> DirectedInfinity[1], 
-         "CreationID" -> "998e991f-5539-4ca8-905f-e0b728e3bd3e", "TestID" -> 
+         "CreationID" -> "d7209a94-705e-4fe9-9a5b-61cba5dff9f3", "TestID" -> 
          "FrameHoldsReferenceAnnulus", "TestFileName" -> "", "EvaluationID" -> 
-         "b895061a-2d20-4bcc-91a8-da7116cf961d", "Input" -> HoldForm[
+         "701cb4bd-ad78-4089-8893-e83fe82d03f8", "Input" -> HoldForm[
            
            Module[{$CellContext`cam = $CellContext`cameraDatabase[
               "Thorlabs Zelux CS165MU (Compact CMOS)"], \
@@ -51553,18 +51540,18 @@ $CellContext`halfWidth}, $CellContext`halfWidth = Last[
              1.4 $CellContext`apertureRadius]], "ExpectedMessages" -> 
          HoldForm[{}], "ActualOutput" -> HoldForm[True], 
          "ActualMessages" -> {}, "AbsoluteTimeUsed" -> 
-         0.000055`1.8908776873262374, "CPUTimeUsed" -> 0.00005500000000058236,
-          "MemoryUsed" -> 3464, "IntermediateTestsTree" -> {}, 
+         0.000051`1.858085173929928, "CPUTimeUsed" -> 0.00005099999999913507, 
+         "MemoryUsed" -> 3464, "IntermediateTestsTree" -> {}, 
          "ExpectedOutput" -> HoldForm[True], "Outcome" -> "Success", 
-         "FailureType" -> None|>], 2174241409221771437 -> 
+         "FailureType" -> None|>], 33012393325226119 -> 
       TestObject[<|
         "MetaInformation" -> None, "AbsoluteTime" -> 
-         3.998991741311565`15.655555492056603*^9, "SameTest" -> SameQ, 
+         3.998992052181733`15.65555552581741*^9, "SameTest" -> SameQ, 
          "SameMessages" -> Testing`MessageMatchQ, "MemoryConstraint" -> 
          DirectedInfinity[1], "TimeConstraint" -> DirectedInfinity[1], 
-         "CreationID" -> "e02250fa-88a3-4728-a51a-c7ddfaa101db", "TestID" -> 
+         "CreationID" -> "e3e13668-ebeb-4dac-ae71-611c10ac704b", "TestID" -> 
          "SyntheticFrameApertureSignal", "TestFileName" -> "", "EvaluationID" -> 
-         "3a2073a9-8efb-409d-9cc0-ff3e5cc46027", "Input" -> HoldForm[
+         "ec5675da-9b5a-4051-a4da-ee9f565d1728", "Input" -> HoldForm[
            
            Module[{$CellContext`cam = $CellContext`cameraDatabase[
               "Andor iXon Ultra 888 (EMCCD Benchmark)"], $CellContext`frame, \
@@ -51578,18 +51565,18 @@ $CellContext`signalMeanFrame[$CellContext`cam, 1, 10.^6]; $CellContext`mask =
                 10.^6 $CellContext`cam["QE"]) - 1] < 0.02]], 
          "ExpectedMessages" -> HoldForm[{}], "ActualOutput" -> HoldForm[True],
           "ActualMessages" -> {}, "AbsoluteTimeUsed" -> 
-         0.000317`2.6515742600497454, "CPUTimeUsed" -> 0.0003169999999990125, 
+         0.000316`2.650202080450393, "CPUTimeUsed" -> 0.0003159999999997609, 
          "MemoryUsed" -> 3464, "IntermediateTestsTree" -> {}, 
          "ExpectedOutput" -> HoldForm[True], "Outcome" -> "Success", 
-         "FailureType" -> None|>], 8183275750919660183 -> 
+         "FailureType" -> None|>], 5276685172857578647 -> 
       TestObject[<|
         "MetaInformation" -> None, "AbsoluteTime" -> 
-         3.998991741311988`15.655555492056651*^9, "SameTest" -> SameQ, 
+         3.998992052182155`15.655555525817457*^9, "SameTest" -> SameQ, 
          "SameMessages" -> Testing`MessageMatchQ, "MemoryConstraint" -> 
          DirectedInfinity[1], "TimeConstraint" -> DirectedInfinity[1], 
-         "CreationID" -> "305be666-b607-48f4-954e-8103ef78e9aa", "TestID" -> 
+         "CreationID" -> "db5bdc5d-a2bc-4f1d-a77c-2bb61ca784d2", "TestID" -> 
          "ThresholdRoundTrip", "TestFileName" -> "", "EvaluationID" -> 
-         "5af29dd3-6672-4f30-90b3-7a4a1f442643", "Input" -> HoldForm[
+         "48da3170-8dab-4bf2-9cb5-5198e787d408", "Input" -> HoldForm[
            Apply[And, 
             Flatten[
              Table[Abs[$CellContext`integratedSNR[
@@ -51602,19 +51589,19 @@ $CellContext`binFactor, $CellContext`target]] - $CellContext`target] <
 {$CellContext`binFactor, $CellContext`benchmarkBins}, {$CellContext`target, {
                3, 10}}]]]], "ExpectedMessages" -> HoldForm[{}], 
          "ActualOutput" -> HoldForm[True], "ActualMessages" -> {}, 
-         "AbsoluteTimeUsed" -> 0.001786`3.4023964523845196, "CPUTimeUsed" -> 
-         0.013511000000000273`, "MemoryUsed" -> 3480, 
+         "AbsoluteTimeUsed" -> 0.001803`3.406510724554394, "CPUTimeUsed" -> 
+         0.013865000000000904`, "MemoryUsed" -> 3480, 
          "IntermediateTestsTree" -> {}, "ExpectedOutput" -> HoldForm[True], 
          "Outcome" -> "Success", "FailureType" -> None|>], 
-      3136306498673243494 -> 
+      6275606049925216428 -> 
       TestObject[<|
         "MetaInformation" -> None, "AbsoluteTime" -> 
-         3.998991741313872`15.655555492056852*^9, "SameTest" -> SameQ, 
+         3.998992052184062`15.655555525817663*^9, "SameTest" -> SameQ, 
          "SameMessages" -> Testing`MessageMatchQ, "MemoryConstraint" -> 
          DirectedInfinity[1], "TimeConstraint" -> DirectedInfinity[1], 
-         "CreationID" -> "5805961c-b4b5-4f18-9cc2-341a9c102b9c", "TestID" -> 
+         "CreationID" -> "5dda5742-efe8-4166-b61e-9e4bd9910b08", "TestID" -> 
          "SNRMonotonicInSignal", "TestFileName" -> "", "EvaluationID" -> 
-         "f0356080-d330-4f56-a8a1-c8fff9b48bba", "Input" -> HoldForm[
+         "9b538636-000f-4327-83b2-6d92c063098e", "Input" -> HoldForm[
            Apply[And, 
             Table[
              Apply[Less, 
@@ -51624,18 +51611,18 @@ $CellContext`binFactor, $CellContext`target]] - $CellContext`target] <
                 10.^6}]], {$CellContext`name, $CellContext`cameraNames}]]], 
          "ExpectedMessages" -> HoldForm[{}], "ActualOutput" -> HoldForm[True],
           "ActualMessages" -> {}, "AbsoluteTimeUsed" -> 
-         0.00042`2.773764288229894, "CPUTimeUsed" -> 0.00042099999999933857`, 
+         0.00043`2.783983453411576, "CPUTimeUsed" -> 0.00043099999999984817`, 
          "MemoryUsed" -> 3568, "IntermediateTestsTree" -> {}, 
          "ExpectedOutput" -> HoldForm[True], "Outcome" -> "Success", 
-         "FailureType" -> None|>], 5552008060902999714 -> 
+         "FailureType" -> None|>], 5326396597883586198 -> 
       TestObject[<|
         "MetaInformation" -> None, "AbsoluteTime" -> 
-         3.998991741314386`15.655555492056907*^9, "SameTest" -> SameQ, 
+         3.998992052184591`15.655555525817721*^9, "SameTest" -> SameQ, 
          "SameMessages" -> Testing`MessageMatchQ, "MemoryConstraint" -> 
          DirectedInfinity[1], "TimeConstraint" -> DirectedInfinity[1], 
-         "CreationID" -> "e9430585-529c-41ee-9131-1b1e92fac777", "TestID" -> 
+         "CreationID" -> "6b246217-1457-4517-af73-c4ca30a2889e", "TestID" -> 
          "SNRDecreasesWithScatter", "TestFileName" -> "", "EvaluationID" -> 
-         "16c9ffe0-a46c-40b8-aed0-0a1d3bedd97d", "Input" -> HoldForm[
+         "477097f5-ef3e-4f89-9bff-f4ca936f7b5a", "Input" -> HoldForm[
            Apply[And, 
             Table[$CellContext`integratedSNR[
                $CellContext`cameraDatabase[$CellContext`name], 1, 10.^4, 0.02,
@@ -51648,19 +51635,19 @@ $CellContext`binFactor, $CellContext`target]] - $CellContext`target] <
                "ReadNoiseRMS"]], {$CellContext`name, \
 $CellContext`cameraNames}]]], "ExpectedMessages" -> HoldForm[{}], 
          "ActualOutput" -> HoldForm[True], "ActualMessages" -> {}, 
-         "AbsoluteTimeUsed" -> 0.000276`2.5914240798972092, "CPUTimeUsed" -> 
-         0.0002780000000006666, "MemoryUsed" -> 3480, 
+         "AbsoluteTimeUsed" -> 0.000279`2.596119201105591, "CPUTimeUsed" -> 
+         0.000280000000000058, "MemoryUsed" -> 3480, 
          "IntermediateTestsTree" -> {}, "ExpectedOutput" -> HoldForm[True], 
          "Outcome" -> "Success", "FailureType" -> None|>], 
-      2634539616316771914 -> 
+      1340634246050596934 -> 
       TestObject[<|
         "MetaInformation" -> None, "AbsoluteTime" -> 
-         3.998991741314756`15.65555549205695*^9, "SameTest" -> SameQ, 
+         3.998992052184964`15.65555552581776*^9, "SameTest" -> SameQ, 
          "SameMessages" -> Testing`MessageMatchQ, "MemoryConstraint" -> 
          DirectedInfinity[1], "TimeConstraint" -> DirectedInfinity[1], 
-         "CreationID" -> "3b429648-ad67-463b-9958-8306b5808a6a", "TestID" -> 
+         "CreationID" -> "390aa2b1-1557-4764-b2f0-c68322dcadf0", "TestID" -> 
          "SlopeReadNoiseLimited", "TestFileName" -> "", "EvaluationID" -> 
-         "a1ccda12-a3ce-4c5c-8cbf-b96c7387d118", "Input" -> HoldForm[
+         "e2692b9d-8b74-4dfe-95f0-45e7ced99f6b", "Input" -> HoldForm[
            
            Module[{$CellContext`cam = $CellContext`cameraDatabase[
               "Thorlabs Zelux CS165MU (Compact CMOS)"], \
@@ -51673,18 +51660,18 @@ $CellContext`backgroundMultiplierDefault,
                  1, $CellContext`crossover/100] - 1] < 0.01]], 
          "ExpectedMessages" -> HoldForm[{}], "ActualOutput" -> HoldForm[True],
           "ActualMessages" -> {}, "AbsoluteTimeUsed" -> 
-         0.00011`2.1919076829902164, "CPUTimeUsed" -> 0.00011000000000027654`,
-          "MemoryUsed" -> 3464, "IntermediateTestsTree" -> {}, 
+         0.00011`2.191907682990214, "CPUTimeUsed" -> 0.00010900000000013677`, 
+         "MemoryUsed" -> 3464, "IntermediateTestsTree" -> {}, 
          "ExpectedOutput" -> HoldForm[True], "Outcome" -> "Success", 
-         "FailureType" -> None|>], 6353072358300572462 -> 
+         "FailureType" -> None|>], 8758413608773671995 -> 
       TestObject[<|
         "MetaInformation" -> None, "AbsoluteTime" -> 
-         3.998991741314954`15.65555549205697*^9, "SameTest" -> SameQ, 
+         3.998992052185166`15.655555525817787*^9, "SameTest" -> SameQ, 
          "SameMessages" -> Testing`MessageMatchQ, "MemoryConstraint" -> 
          DirectedInfinity[1], "TimeConstraint" -> DirectedInfinity[1], 
-         "CreationID" -> "9a85b823-8b1f-42cc-9859-8f7a908e70c6", "TestID" -> 
+         "CreationID" -> "75a95b36-db6b-4db1-8855-9aa5f36a249b", "TestID" -> 
          "SlopeShotNoiseLimited", "TestFileName" -> "", "EvaluationID" -> 
-         "e692f952-5e3f-4b4e-ac43-b747a50198f3", "Input" -> HoldForm[
+         "75fdfc75-b556-429a-9d30-14f7dc116ecf", "Input" -> HoldForm[
            
            Module[{$CellContext`cam = $CellContext`cameraDatabase[
               "Andor iXon Ultra 888 (EMCCD Benchmark)"], \
@@ -51697,18 +51684,18 @@ $CellContext`backgroundMultiplierDefault,
                  100 $CellContext`crossover] - 0.5] < 0.01]], 
          "ExpectedMessages" -> HoldForm[{}], "ActualOutput" -> HoldForm[True],
           "ActualMessages" -> {}, "AbsoluteTimeUsed" -> 
-         0.000092`2.1143028251775466, "CPUTimeUsed" -> 0.00009200000000042508,
-          "MemoryUsed" -> 3400, "IntermediateTestsTree" -> {}, 
+         0.000096`2.13278623087156, "CPUTimeUsed" -> 0.00009600000000009601, 
+         "MemoryUsed" -> 3400, "IntermediateTestsTree" -> {}, 
          "ExpectedOutput" -> HoldForm[True], "Outcome" -> "Success", 
-         "FailureType" -> None|>], 4857037452304297259 -> 
+         "FailureType" -> None|>], 2713170440542974930 -> 
       TestObject[<|
         "MetaInformation" -> None, "AbsoluteTime" -> 
-         3.998991741315133`15.655555492056989*^9, "SameTest" -> SameQ, 
+         3.998992052185352`15.655555525817803*^9, "SameTest" -> SameQ, 
          "SameMessages" -> Testing`MessageMatchQ, "MemoryConstraint" -> 
          DirectedInfinity[1], "TimeConstraint" -> DirectedInfinity[1], 
-         "CreationID" -> "2d8374d8-5b5b-4aa7-bfb4-517c6f2f4d41", "TestID" -> 
+         "CreationID" -> "32ff9449-003a-4dcd-8160-7090d708416f", "TestID" -> 
          "NoGlobalScopeLeakage", "TestFileName" -> "", "EvaluationID" -> 
-         "37761c72-cd63-49d4-a8b8-4699703e9d0b", "Input" -> HoldForm[
+         "655c9045-554f-4d81-ba8b-8b6afbe5418a", "Input" -> HoldForm[
            
            Module[{$CellContext`before, $CellContext`after}, \
 $CellContext`before = Names["Global`*"]; $CellContext`dashboardView[
@@ -51717,37 +51704,37 @@ $CellContext`before = Names["Global`*"]; $CellContext`dashboardView[
             Complement[$CellContext`after, $CellContext`before]]], 
          "ExpectedMessages" -> HoldForm[{}], "ActualOutput" -> HoldForm[{}], 
          "ActualMessages" -> {}, "AbsoluteTimeUsed" -> 
-         0.639678`5.956476412418709, "CPUTimeUsed" -> 0.7765559999999994, 
+         0.609034`5.935156536113818, "CPUTimeUsed" -> 0.7477049999999998, 
          "MemoryUsed" -> 49285840, "IntermediateTestsTree" -> {}, 
          "ExpectedOutput" -> HoldForm[{}], "Outcome" -> "Success", 
-         "FailureType" -> None|>], 8601845429332202959 -> 
+         "FailureType" -> None|>], 7675665109635637001 -> 
       TestObject[<|
         "MetaInformation" -> None, "AbsoluteTime" -> 
-         3.998991741954997`15.655555492126478*^9, "SameTest" -> SameQ, 
+         3.998992052794571`15.655555525883965*^9, "SameTest" -> SameQ, 
          "SameMessages" -> Testing`MessageMatchQ, "MemoryConstraint" -> 
          DirectedInfinity[1], "TimeConstraint" -> DirectedInfinity[1], 
-         "CreationID" -> "5758f9b7-fb55-41bd-89d3-9f417fc0cbfb", "TestID" -> 
+         "CreationID" -> "71ce589c-4bbd-45c0-855b-c89e9f28976e", "TestID" -> 
          "FitParametersUnassigned", "TestFileName" -> "", "EvaluationID" -> 
-         "0492bc4b-cc9d-4e13-9227-b63fd0f70f40", "Input" -> HoldForm[
+         "42948004-96e6-4411-bbbe-83d16052ef3f", "Input" -> HoldForm[
            Map[
            ValueQ, {$CellContext`fitAmplitude, $CellContext`fitCentre, \
 $CellContext`fitWidth, $CellContext`fitOffset, $CellContext`fitVariable}]], 
          "ExpectedMessages" -> HoldForm[{}], "ActualOutput" -> 
          HoldForm[{False, False, False, False, False}], 
          "ActualMessages" -> {}, "AbsoluteTimeUsed" -> 
-         0.000081`2.0590000167106437, "CPUTimeUsed" -> 0.00008199999999991547,
+         0.000078`2.0426096005224745, "CPUTimeUsed" -> 0.00007800000000024454,
           "MemoryUsed" -> 3600, "IntermediateTestsTree" -> {}, 
          "ExpectedOutput" -> HoldForm[{False, False, False, False, False}], 
          "Outcome" -> "Success", "FailureType" -> None|>], 
-      4331767809662954687 -> 
+      1129641982263311999 -> 
       TestObject[<|
         "MetaInformation" -> None, "AbsoluteTime" -> 
-         3.998991741955216`15.655555492126505*^9, "SameTest" -> SameQ, 
+         3.998992052794788`15.655555525883992*^9, "SameTest" -> SameQ, 
          "SameMessages" -> Testing`MessageMatchQ, "MemoryConstraint" -> 
          DirectedInfinity[1], "TimeConstraint" -> DirectedInfinity[1], 
-         "CreationID" -> "794ee17f-5cc4-44ab-8691-cefb45bcab7e", "TestID" -> 
+         "CreationID" -> "1e266bd1-b488-4795-8493-7b402659750a", "TestID" -> 
          "MatchedFilterBeatsTopHat", "TestFileName" -> "", "EvaluationID" -> 
-         "097056ff-ce58-461a-8fc0-e92e79cef333", "Input" -> HoldForm[
+         "8e09f8e1-7238-4d40-99a9-8c3548c60f13", "Input" -> HoldForm[
            Apply[And, 
             Flatten[
              Table[
@@ -51764,18 +51751,18 @@ $CellContext`cameraNames}, {$CellContext`binFactor, \
 $CellContext`benchmarkBins}, {$CellContext`nMol, {10., 10.^4}}]]]], 
          "ExpectedMessages" -> HoldForm[{}], "ActualOutput" -> HoldForm[True],
           "ActualMessages" -> {}, "AbsoluteTimeUsed" -> 
-         0.10815`5.1845415216071045, "CPUTimeUsed" -> 0.5837430000000019, 
+         0.124781`5.246663459593893, "CPUTimeUsed" -> 0.6452930000000006, 
          "MemoryUsed" -> 4544, "IntermediateTestsTree" -> {}, 
          "ExpectedOutput" -> HoldForm[True], "Outcome" -> "Success", 
-         "FailureType" -> None|>], 5597118891242387169 -> 
+         "FailureType" -> None|>], 3791865960936989995 -> 
       TestObject[<|
         "MetaInformation" -> None, "AbsoluteTime" -> 
-         3.998991742063561`15.655555492138273*^9, "SameTest" -> SameQ, 
+         3.998992052919756`15.65555552589756*^9, "SameTest" -> SameQ, 
          "SameMessages" -> Testing`MessageMatchQ, "MemoryConstraint" -> 
          DirectedInfinity[1], "TimeConstraint" -> DirectedInfinity[1], 
-         "CreationID" -> "5b3a6db1-109b-4185-912f-5e5437687a15", "TestID" -> 
+         "CreationID" -> "6fd2c342-9539-4fb5-8edd-028b815ff5cd", "TestID" -> 
          "MatchedFilterReachesShotNoiseLimit", "TestFileName" -> "", 
-         "EvaluationID" -> "bd3851ea-5a57-4529-b379-66fc7224b5d7", "Input" -> 
+         "EvaluationID" -> "f150db57-35b0-4f65-a3ae-800be6982141", "Input" -> 
          HoldForm[
            
            Module[{$CellContext`cam = $CellContext`cameraDatabase[
@@ -51790,19 +51777,19 @@ $CellContext`snrEstimators[$CellContext`cam, 1,
             Abs[$CellContext`est["MatchedFilterSNR"]/$CellContext`shotLimit - 
                1] < 0.01]], "ExpectedMessages" -> HoldForm[{}], 
          "ActualOutput" -> HoldForm[True], "ActualMessages" -> {}, 
-         "AbsoluteTimeUsed" -> 0.004611`3.814310120051397, "CPUTimeUsed" -> 
-         0.02706399999999931, "MemoryUsed" -> 3464, 
+         "AbsoluteTimeUsed" -> 0.005258`3.8713355796023357, "CPUTimeUsed" -> 
+         0.037318999999999214`, "MemoryUsed" -> 3464, 
          "IntermediateTestsTree" -> {}, "ExpectedOutput" -> HoldForm[True], 
          "Outcome" -> "Success", "FailureType" -> None|>], 
-      2874387817993832686 -> 
+      1746440260220368082 -> 
       TestObject[<|
         "MetaInformation" -> None, "AbsoluteTime" -> 
-         3.998991742068376`15.655555492138795*^9, "SameTest" -> SameQ, 
+         3.998992052925226`15.655555525898155*^9, "SameTest" -> SameQ, 
          "SameMessages" -> Testing`MessageMatchQ, "MemoryConstraint" -> 
          DirectedInfinity[1], "TimeConstraint" -> DirectedInfinity[1], 
-         "CreationID" -> "da59e745-7f2b-422c-aedf-a861d829f160", "TestID" -> 
+         "CreationID" -> "adfae291-bdaf-482b-a1ad-6845ab6e1f25", "TestID" -> 
          "PeakPixelSNRClosedFormMatchesGrid", "TestFileName" -> "", 
-         "EvaluationID" -> "1ccbc512-8a46-4986-b28c-2ea8c06dacbe", "Input" -> 
+         "EvaluationID" -> "8c96ff7d-33f8-4e6c-beb5-70b2edce679c", "Input" -> 
          HoldForm[
            Apply[And, 
             Flatten[
@@ -51815,18 +51802,18 @@ $CellContext`binFactor, 10.^4]["PeakPixelSNR"] - 1] <
 {$CellContext`binFactor, $CellContext`benchmarkBins}]]]], "ExpectedMessages" -> 
          HoldForm[{}], "ActualOutput" -> HoldForm[True], 
          "ActualMessages" -> {}, "AbsoluteTimeUsed" -> 
-         0.058729`4.919367603848124, "CPUTimeUsed" -> 0.3130209999999991, 
+         0.051089`4.858842399854006, "CPUTimeUsed" -> 0.27260499999999865`, 
          "MemoryUsed" -> 4416, "IntermediateTestsTree" -> {}, 
          "ExpectedOutput" -> HoldForm[True], "Outcome" -> "Success", 
-         "FailureType" -> None|>], 2604709061131855511 -> 
+         "FailureType" -> None|>], 7481106504161545629 -> 
       TestObject[<|
         "MetaInformation" -> None, "AbsoluteTime" -> 
-         3.99899174212731`15.655555492145195*^9, "SameTest" -> SameQ, 
+         3.998992052976512`15.655555525903726*^9, "SameTest" -> SameQ, 
          "SameMessages" -> Testing`MessageMatchQ, "MemoryConstraint" -> 
          DirectedInfinity[1], "TimeConstraint" -> DirectedInfinity[1], 
-         "CreationID" -> "e29483d2-1e8e-4064-96f3-80715f0d727f", "TestID" -> 
+         "CreationID" -> "f12c7a35-78b1-40be-86fa-c44c8e9e4740", "TestID" -> 
          "VisibilityThresholdRoundTrip", "TestFileName" -> "", "EvaluationID" -> 
-         "e35f75e9-d1b4-4783-8283-b45c94640e5b", "Input" -> HoldForm[
+         "e8a7e0a8-7e3b-4db5-a0a4-df71c46f9d44", "Input" -> HoldForm[
            Apply[And, 
             Flatten[
              Table[Abs[$CellContext`peakPixelSNR[
@@ -51839,18 +51826,18 @@ $CellContext`binFactor, $CellContext`target]] - $CellContext`target] <
 {$CellContext`binFactor, $CellContext`benchmarkBins}, {$CellContext`target, {
                3, 5}}]]]], "ExpectedMessages" -> HoldForm[{}], "ActualOutput" -> 
          HoldForm[True], "ActualMessages" -> {}, "AbsoluteTimeUsed" -> 
-         0.001657`3.369837506251329, "CPUTimeUsed" -> 0.010801999999999978`, 
+         0.001697`3.3801968401496696, "CPUTimeUsed" -> 0.008905999999999636, 
          "MemoryUsed" -> 3480, "IntermediateTestsTree" -> {}, 
          "ExpectedOutput" -> HoldForm[True], "Outcome" -> "Success", 
-         "FailureType" -> None|>], 1763927891120884775 -> 
+         "FailureType" -> None|>], 9151089658363244485 -> 
       TestObject[<|
         "MetaInformation" -> None, "AbsoluteTime" -> 
-         3.998991742129113`15.655555492145387*^9, "SameTest" -> SameQ, 
+         3.998992052978351`15.655555525903926*^9, "SameTest" -> SameQ, 
          "SameMessages" -> Testing`MessageMatchQ, "MemoryConstraint" -> 
          DirectedInfinity[1], "TimeConstraint" -> DirectedInfinity[1], 
-         "CreationID" -> "eab47e58-0307-43c7-9716-d03ea4f773aa", "TestID" -> 
+         "CreationID" -> "5448acaf-862a-4894-b8f4-85be75046813", "TestID" -> 
          "BinningTradesPrecisionForVisibility", "TestFileName" -> "", 
-         "EvaluationID" -> "87a27f83-6b2b-4c60-ae21-173e2b911c7d", "Input" -> 
+         "EvaluationID" -> "6e97af16-0e1e-4557-a93d-86befa6dfb80", "Input" -> 
          HoldForm[
            
            Module[{$CellContext`cam = $CellContext`cameraDatabase[
@@ -51863,18 +51850,18 @@ $CellContext`binFactor, $CellContext`target]] - $CellContext`target] <
                   10.^4]/$CellContext`peakPixelSNR[$CellContext`cam, 1, 
                  10.^4] - 4] < 0.05]]], "ExpectedMessages" -> HoldForm[{}], 
          "ActualOutput" -> HoldForm[True], "ActualMessages" -> {}, 
-         "AbsoluteTimeUsed" -> 0.000131`2.267786293487758, "CPUTimeUsed" -> 
-         0.00013299999999993872`, "MemoryUsed" -> 3416, 
+         "AbsoluteTimeUsed" -> 0.000113`2.2035934413154137, "CPUTimeUsed" -> 
+         0.00011499999999919908`, "MemoryUsed" -> 3416, 
          "IntermediateTestsTree" -> {}, "ExpectedOutput" -> HoldForm[True], 
-         "Outcome" -> "Success", "FailureType" -> None|>], 624127571400318730 -> 
+         "Outcome" -> "Success", "FailureType" -> None|>], 370205782009880691 -> 
       TestObject[<|
         "MetaInformation" -> None, "AbsoluteTime" -> 
-         3.998991742129353`15.655555492145417*^9, "SameTest" -> SameQ, 
+         3.998992052978571`15.655555525903948*^9, "SameTest" -> SameQ, 
          "SameMessages" -> Testing`MessageMatchQ, "MemoryConstraint" -> 
          DirectedInfinity[1], "TimeConstraint" -> DirectedInfinity[1], 
-         "CreationID" -> "477d2086-e554-4397-a57a-ca0ec7092e67", "TestID" -> 
+         "CreationID" -> "4b057bf4-6edd-4b5a-81d7-1fc10de3492f", "TestID" -> 
          "TopHatMatchesClosedForm", "TestFileName" -> "", "EvaluationID" -> 
-         "6f08138a-00fc-4081-ad22-f51e22836565", "Input" -> HoldForm[
+         "40e7072f-5f6f-426c-85a1-18d5252b2e24", "Input" -> HoldForm[
            
            Module[{$CellContext`cam = $CellContext`cameraDatabase[
               "Thorlabs Zelux CS165MU (Compact CMOS)"], $CellContext`topHat, \
@@ -51885,35 +51872,35 @@ $CellContext`integratedSNRMolecules[$CellContext`cam, 1, 10.^4];
             Abs[$CellContext`topHat/$CellContext`analytic - 1] < 0.02]], 
          "ExpectedMessages" -> HoldForm[{}], "ActualOutput" -> HoldForm[True],
           "ActualMessages" -> {}, "AbsoluteTimeUsed" -> 
-         0.014987`4.326229705140687, "CPUTimeUsed" -> 0.061051000000000855`, 
+         0.008876`4.098732291391962, "CPUTimeUsed" -> 0.0368460000000006, 
          "MemoryUsed" -> 3464, "IntermediateTestsTree" -> {}, 
          "ExpectedOutput" -> HoldForm[True], "Outcome" -> "Success", 
-         "FailureType" -> None|>], 113910234164127748 -> 
+         "FailureType" -> None|>], 524192788093938521 -> 
       TestObject[<|
         "MetaInformation" -> None, "AbsoluteTime" -> 
-         3.998991742144533`15.655555492147064*^9, "SameTest" -> SameQ, 
+         3.998992052987611`15.655555525904932*^9, "SameTest" -> SameQ, 
          "SameMessages" -> Testing`MessageMatchQ, "MemoryConstraint" -> 
          DirectedInfinity[1], "TimeConstraint" -> DirectedInfinity[1], 
-         "CreationID" -> "4f38251d-6fe2-45e6-bc3a-66f90c869924", "TestID" -> 
+         "CreationID" -> "e301fbcc-cea6-47a0-a6b5-53919a5d0338", "TestID" -> 
          "PhotonsPerMoleculeConversion", "TestFileName" -> "", "EvaluationID" -> 
-         "a4fabfc8-8658-4cf9-ac94-f91b36737ae3", "Input" -> 
+         "f2611162-e91b-4cc5-ac06-4dfa8d5dbd6a", "Input" -> 
          HoldForm[
           Abs[$CellContext`photonsPerMolecule[0.02, 1.*^6] - 1.*^6 
              0.02 $CellContext`geometricEfficiency 0.95 (1 - Exp[-2])] < 
            10^(-6)], "ExpectedMessages" -> HoldForm[{}], "ActualOutput" -> 
          HoldForm[True], "ActualMessages" -> {}, "AbsoluteTimeUsed" -> 
-         0.000045`1.803727511607338, "CPUTimeUsed" -> 0.00004599999999932436, 
+         0.00004`1.7525749891599518, "CPUTimeUsed" -> 0.00004000000000026205, 
          "MemoryUsed" -> 3400, "IntermediateTestsTree" -> {}, 
          "ExpectedOutput" -> HoldForm[True], "Outcome" -> "Success", 
-         "FailureType" -> None|>], 5999456532186106754 -> 
+         "FailureType" -> None|>], 7243301368236273808 -> 
       TestObject[<|
         "MetaInformation" -> None, "AbsoluteTime" -> 
-         3.998991742144718`15.655555492147085*^9, "SameTest" -> SameQ, 
+         3.998992052987776`15.655555525904948*^9, "SameTest" -> SameQ, 
          "SameMessages" -> Testing`MessageMatchQ, "MemoryConstraint" -> 
          DirectedInfinity[1], "TimeConstraint" -> DirectedInfinity[1], 
-         "CreationID" -> "4a03b867-c985-4372-b103-970712b378d1", "TestID" -> 
+         "CreationID" -> "a481f2b4-2f3b-4165-ae9c-22b2b09d5fe3", "TestID" -> 
          "MoleculeThresholdRoundTrip", "TestFileName" -> "", "EvaluationID" -> 
-         "3364b76a-07af-44fd-9dff-a9e08bc6f66f", "Input" -> HoldForm[
+         "24a79ed1-98d6-4dc1-83ae-ab25f1c5483e", "Input" -> HoldForm[
            Apply[And, 
             Flatten[
              Table[Abs[$CellContext`integratedSNRMolecules[
@@ -51926,19 +51913,19 @@ $CellContext`binFactor, $CellContext`target]] - $CellContext`target] <
 {$CellContext`binFactor, $CellContext`benchmarkBins}, {$CellContext`target, {
                3, 10}}]]]], "ExpectedMessages" -> HoldForm[{}], 
          "ActualOutput" -> HoldForm[True], "ActualMessages" -> {}, 
-         "AbsoluteTimeUsed" -> 0.001925`3.434945731676513, "CPUTimeUsed" -> 
-         0.014408000000001309`, "MemoryUsed" -> 3480, 
+         "AbsoluteTimeUsed" -> 0.002025`3.456940025382677, "CPUTimeUsed" -> 
+         0.013150000000001327`, "MemoryUsed" -> 3480, 
          "IntermediateTestsTree" -> {}, "ExpectedOutput" -> HoldForm[True], 
          "Outcome" -> "Success", "FailureType" -> None|>], 
-      1123370780734935597 -> 
+      4188693245877947908 -> 
       TestObject[<|
         "MetaInformation" -> None, "AbsoluteTime" -> 
-         3.998991742146754`15.655555492147304*^9, "SameTest" -> SameQ, 
+         3.99899205298996`15.655555525905184*^9, "SameTest" -> SameQ, 
          "SameMessages" -> Testing`MessageMatchQ, "MemoryConstraint" -> 
          DirectedInfinity[1], "TimeConstraint" -> DirectedInfinity[1], 
-         "CreationID" -> "edd4df2b-281e-4591-a80d-a2217dac33e5", "TestID" -> 
+         "CreationID" -> "0f8f50d5-e7ef-4eff-bd11-5091c1be6717", "TestID" -> 
          "SaturationMoleculesMatchesFrame", "TestFileName" -> "", 
-         "EvaluationID" -> "c252dec8-0409-491e-9506-9582f755667f", "Input" -> 
+         "EvaluationID" -> "f19ff566-938e-485b-bdb2-b481045c78d6", "Input" -> 
          HoldForm[
            
            Module[{$CellContext`cam = $CellContext`cameraDatabase[
@@ -51950,19 +51937,19 @@ $CellContext`saturationMolecules[$CellContext`cam, 1]; Abs[Max[
 nMolSat, $CellContext`exposureTimeNominal]]]/$CellContext`cam["FullWell"] - 
                1] < 0.02]], "ExpectedMessages" -> HoldForm[{}], 
          "ActualOutput" -> HoldForm[True], "ActualMessages" -> {}, 
-         "AbsoluteTimeUsed" -> 0.002782`3.594872123488017, "CPUTimeUsed" -> 
-         0.011148999999997855`, "MemoryUsed" -> 3464, 
+         "AbsoluteTimeUsed" -> 0.000688`2.988103436067503, "CPUTimeUsed" -> 
+         0.0007040000000007041, "MemoryUsed" -> 3464, 
          "IntermediateTestsTree" -> {}, "ExpectedOutput" -> HoldForm[True], 
          "Outcome" -> "Success", "FailureType" -> None|>], 
-      6670107105022814180 -> 
+      5984397815773032896 -> 
       TestObject[<|
         "MetaInformation" -> None, "AbsoluteTime" -> 
-         3.998991742149663`15.65555549214762*^9, "SameTest" -> SameQ, 
+         3.998992052990788`15.655555525905275*^9, "SameTest" -> SameQ, 
          "SameMessages" -> Testing`MessageMatchQ, "MemoryConstraint" -> 
          DirectedInfinity[1], "TimeConstraint" -> DirectedInfinity[1], 
-         "CreationID" -> "2142fc69-c05c-4f3e-9fed-36029a56c5d9", "TestID" -> 
+         "CreationID" -> "c4d129fe-6914-4eb5-9611-4f1df610e78e", "TestID" -> 
          "NoUnderscoresInSymbolNames", "TestFileName" -> "", "EvaluationID" -> 
-         "547e8c29-27e0-4819-9b59-868628ef6fa4", "Input" -> HoldForm[
+         "f183c476-2193-41d5-8ea7-8fb5e59472c9", "Input" -> HoldForm[
            Map[StringFreeQ[#, "_"]& , 
             Select[
              Names["Global`*"], StringFreeQ[#, "$"]& ]]], "ExpectedMessages" -> 
@@ -51994,8 +51981,8 @@ nMolSat, $CellContext`exposureTimeNominal]]]/$CellContext`cam["FullWell"] -
             True, True, True, True, True, True, True, True, True, True, True, 
             True, True, True, True, True, True, True, True, True, True, True, 
             True, True, True, True, True}], "ActualMessages" -> {}, 
-         "AbsoluteTimeUsed" -> 0.009913`4.146720104010316, "CPUTimeUsed" -> 
-         0.010866999999999294`, "MemoryUsed" -> 6528, 
+         "AbsoluteTimeUsed" -> 0.009477`4.127185878456803, "CPUTimeUsed" -> 
+         0.015004000000001128`, "MemoryUsed" -> 6528, 
          "IntermediateTestsTree" -> {}, "ExpectedOutput" -> 
          HoldForm[{
            True, True, True, True, True, True, True, True, True, True, True, 
@@ -52028,23 +52015,23 @@ nMolSat, $CellContext`exposureTimeNominal]]]/$CellContext`cam["FullWell"] -
     "TestsNotEvaluatedKeys" -> {}, "TestsFailedWrongResultsKeys" -> {}, 
     "TestsFailedWithMessagesKeys" -> {}, 
     "TestsSucceededKeys" -> CompressedData["
-1:eJw1kzuOFEEQRNfgAAhOgImX/88RVsLiCBhIWBhwf/FqqjFm1IquynwZGf3l
-x+/vP7++vb39+cDft19//r5/5qFNY9Jzuiq6XE2vHuaRqVGyzaGefemz4SMW
-/Eaqo0Zeemiuts6oubWKrLx/QvfxSdOdTM7Hbr+Ol3qJ5KaNifSW2G2bWZq5
-NLRVevXVQ7Ikotx58B4rvzgCAPAtKsmVqotfvj40UU+n0FTX+0d07QBxhlvR
-/2fqrEidHrgjYNR+dIeOFjqr4itPcRANClDNMalzHnhKehp0GIQhzH51P7rs
-mqx32T66SXNYu1ZStXgdd1i0UPVtrGlssOtxRgzS2sxKc0ZunRrr8MWc2dO+
-Yq45IHeEqOMYjXHo8nQufpXlMpxFR770Vfa/Zx1u4yDlw0krCw0689jKVm59
-HXbN/AJjlegzF66Xn2Vju1t47J0rM1k2LQmHLVHQq7PMSPhP+6L+PjoWOxYR
-Tpez3agnDJMtDrW5hG0zx+U5CJFI7sYO9tHDHZN7BEhEMtsPDwiEYdVIO9uv
-e94GO+dsZkmRW009nIRGTgwIFoHGoZdOcV98X1XiMqQgX9nHWj3+4Jxwof1+
-EmezKnxeWud9P9tKHIks8kpc2U7ndYGi7E/Ab5z0A33dqRN6IptiNho68g+T
-17EI
+1:eJw1kzuOFEEQRNfgAsAJMPHy/znCSFgcAQMJC2O5v3jd1SuNVrNZVZGRL2O+
+/fr78/f3t7e390/8+fHn/d/rK1+svKckVc00ty37ro+E9laGRJiJu/m5LxyI
+8q92uLi03fW2rlGdsZQe5Cbuena2lFabxTp39tyf8qpy19FMwYDl0fdFwSld
+B1vTT98yMavhgHPrjHr6egT3bXFmwwu566GJU3NaNJ+IPnUM79VzB6s7CB0/
+ZdxqKBSz8UL0+K9cZIw3gbjIuB7/vq4VUSHL21U/3LohlzyIsUAqZ4/OTLcX
+vq1KIPH4D25YQIwRkPN66gpynniY7tBE8nDI3fTIacU+ZfocndlcUy0zbHp4
+6uvLrX931g0beLOJY6d3VhYOpZGM4Ad/c2G24xKjBVuQ1+cLG0CYkhgwW6me
+oZKlsxJtwLNnfPYDs7NYaizLNDDZMZlO3AjV9oznFKOdYT2kGDXIgWBp/cCf
+zgFiyWGnzH7C0Er8SKaA83Lr8rinb6Xe8xBskbMs1roVdMM7kUPn+PcrC3Vl
+Zr0A8qFPtNmFWMkVfRjME/Ig4lLJT6A0I8uODhxVhsGGvFkEUbnh48AELkST
+vEnt2UmSDPBSWZAOhJ4ox4WZfsSWDNL2ifIMSOzaem/0PnUyHA5KTeiIGwb+
+A4YjsWU=
      "]|>],
   Editable->False,
   SelectWithContents->True,
   Selectable->False]], "Output",
- CellLabel->"Out[19]=",ExpressionUUID->"4414698c-ca8d-464b-85a1-6a6bda8c4ad4"]
+ CellLabel->"Out[19]=",ExpressionUUID->"cbec1c5a-72c5-494e-a1d2-620b0e08c4c7"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -52065,7 +52052,7 @@ Cell[BoxData[
       RowBox[{"Values", "[", 
        RowBox[{"verificationReport", "[", "\"\<TestResults\>\"", "]"}], 
        "]"}]}], "}"}]}], "]"}], "]"}]], "Input",
- CellLabel->"In[20]:=",ExpressionUUID->"bb17acf1-8c46-40ef-9ed6-91cbd7448955"],
+ CellLabel->"In[20]:=",ExpressionUUID->"443566f9-59b1-40d9-8ae6-d67f7c87b4ed"],
 
 Cell[BoxData[
  TagBox[
@@ -53232,7 +53219,7 @@ lastPathIsLeafHeader, TypeSystem`NestedGrid`PackagePrivate`headerHidden$ = And[
   Editable->False,
   SelectWithContents->True,
   Selectable->False]], "Output",
- CellLabel->"Out[20]=",ExpressionUUID->"1433327e-88f4-4197-b8d3-0fba1fa36f0d"]
+ CellLabel->"Out[20]=",ExpressionUUID->"63731a88-1bfd-4b7f-b190-36bd7835d58e"]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]]
@@ -53242,11 +53229,11 @@ WindowMargins->{{56, Automatic}, {Automatic, 0}},
 WindowTitle->"CaF MOT Camera Comparison",
 TaggingRules->{
  "GeneratedBy" -> "GenerateCaFComparisonNotebook.wls", "GeneratedOn" -> 
-  "Mon 21 Sep 2026 16:02:22", "KernelVersion" -> 
+  "Mon 21 Sep 2026 16:07:33", "KernelVersion" -> 
   "14.3.0 for Mac OS X ARM (64-bit) (July 8, 2025)"},
 FrontEndVersion->"14.3 for Mac OS X ARM (64-bit) (July 8, 2025)",
 StyleDefinitions->"Default.nb",
-ExpressionUUID->"ad13c319-568f-40eb-a435-99ab3c696a9e"
+ExpressionUUID->"f601d049-012c-42fb-b332-9da5737a56d9"
 ]
 (* End of Notebook Content *)
 
@@ -53260,153 +53247,153 @@ CellTagsIndex->{}
 (*NotebookFileOutline
 Notebook[{
 Cell[CellGroupData[{
-Cell[615, 23, 119, 0, 70, "Title",ExpressionUUID->"17f8cde3-58ee-499d-88a1-1973e5f1e478"],
-Cell[737, 25, 489, 7, 70, "Text",ExpressionUUID->"9f99d42d-a40e-4208-ad5a-2c802eb2acf4"],
-Cell[1229, 34, 272, 4, 70, "Text",ExpressionUUID->"a7959c5d-eb55-4447-847d-cef4c6d7f2ff"],
+Cell[615, 23, 119, 0, 70, "Title",ExpressionUUID->"77d44e13-ad3e-4b78-9413-0f889da3e9a6"],
+Cell[737, 25, 489, 7, 70, "Text",ExpressionUUID->"f3ac12f9-ea5c-41ee-afd5-fe7a81ced77d"],
+Cell[1229, 34, 272, 4, 70, "Text",ExpressionUUID->"4c756e78-77c5-44d9-9238-90d827b4c549"],
 Cell[CellGroupData[{
-Cell[1526, 42, 100, 0, 70, "Section",ExpressionUUID->"e0b1f142-1bc7-47c7-b4bb-07a65b3d3fb9"],
+Cell[1526, 42, 100, 0, 70, "Section",ExpressionUUID->"c83f6117-c0be-4f0c-9551-9240e503c030"],
 Cell[CellGroupData[{
-Cell[1651, 46, 173, 3, 70, "Subsection",ExpressionUUID->"683437a6-b58c-4dd9-a651-a1e50f3ce8ec"],
-Cell[1827, 51, 421, 6, 70, "Text",ExpressionUUID->"6884b5fa-96d9-49c4-96d1-c2aa4e928b33"],
-Cell[2251, 59, 148, 2, 70, "Text",ExpressionUUID->"54d29190-89ac-43c3-bfe5-faa9f61f46f6"],
-Cell[2402, 63, 548, 8, 70, "Text",ExpressionUUID->"12285d09-4ef7-4bfa-bb8e-40149dc75824"],
-Cell[2953, 73, 566, 8, 70, "Text",ExpressionUUID->"e9ea0f01-db0f-4a83-938b-8a8e6643fb9a"],
+Cell[1651, 46, 173, 3, 70, "Subsection",ExpressionUUID->"babf9ae6-1253-4c23-8171-110f62d37bc7"],
+Cell[1827, 51, 421, 6, 70, "Text",ExpressionUUID->"9d6bfb9d-a349-49ee-8b27-8939f0773ea7"],
+Cell[2251, 59, 148, 2, 70, "Text",ExpressionUUID->"d5b641fa-03a6-47c7-a293-c1403c68e111"],
+Cell[2402, 63, 548, 8, 70, "Text",ExpressionUUID->"a2c16712-a175-4690-837b-b68cfffae9e6"],
+Cell[2953, 73, 550, 8, 70, "Text",ExpressionUUID->"a7ab248c-b4fb-4561-92b4-354b7e14742f"],
 Cell[CellGroupData[{
-Cell[3544, 85, 7372, 196, 70, "Input",ExpressionUUID->"6b65f9e7-1f12-4e84-83bb-254ce661d56d"],
-Cell[10919, 283, 1063, 22, 70, "Output",ExpressionUUID->"22b44bb7-0c34-4ad2-a2c8-957e013ce276"]
+Cell[3528, 85, 7311, 194, 70, "Input",ExpressionUUID->"27c21cb0-bfa2-4549-8580-96fc5da3fbb5"],
+Cell[10842, 281, 1063, 22, 70, "Output",ExpressionUUID->"b81fdc85-4036-4c43-92af-a5397425a6a2"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[12031, 311, 155, 2, 70, "Subsection",ExpressionUUID->"68d755cc-4718-4b12-8b97-651b808586ee"],
-Cell[12189, 315, 925, 12, 70, "Text",ExpressionUUID->"caae7fb5-72e0-44a3-b5e5-ac9a1340f92d"],
-Cell[13117, 329, 292, 4, 70, "Text",ExpressionUUID->"97030211-2ced-4c08-a68e-dc4440df629a"],
-Cell[13412, 335, 622, 9, 70, "Text",ExpressionUUID->"27f6e1b8-6f54-486e-8809-aef33a940019"],
+Cell[11954, 309, 155, 2, 70, "Subsection",ExpressionUUID->"2255055f-98fb-4965-a219-edb535c6a7ac"],
+Cell[12112, 313, 892, 12, 70, "Text",ExpressionUUID->"30d5291c-fb69-4f78-b82e-29a737955ad5"],
+Cell[13007, 327, 292, 4, 70, "Text",ExpressionUUID->"db75a368-10eb-467a-97ce-3b4da953efcf"],
+Cell[13302, 333, 622, 9, 70, "Text",ExpressionUUID->"6623fb2c-abfa-409c-939f-d0428d9adac7"],
 Cell[CellGroupData[{
-Cell[14059, 348, 8091, 225, 70, "Input",ExpressionUUID->"2e943268-a668-49cc-be08-90c8c59a3bbe"],
-Cell[22153, 575, 1044, 21, 70, "Output",ExpressionUUID->"da935a17-b4a9-47b5-9045-3b0e3d1da208"]
+Cell[13949, 346, 8091, 225, 70, "Input",ExpressionUUID->"5b410bbc-53d6-4725-b577-7152012779f3"],
+Cell[22043, 573, 1044, 21, 70, "Output",ExpressionUUID->"184a92c4-b4c3-44cd-b439-2469ff89de98"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[23246, 602, 110, 0, 70, "Subsection",ExpressionUUID->"6f0f10c1-d3a4-4881-95f0-a1afe64d8478"],
-Cell[23359, 604, 617, 9, 70, "Text",ExpressionUUID->"573ce5f8-5950-41d6-8663-19d75d8d7615"],
+Cell[23136, 600, 110, 0, 70, "Subsection",ExpressionUUID->"f2fb1b57-0308-4271-8a1d-c1507865096d"],
+Cell[23249, 602, 645, 9, 70, "Text",ExpressionUUID->"3cc55673-8e25-44c6-af2b-cb4839cca1c5"],
 Cell[CellGroupData[{
-Cell[24001, 617, 14106, 279, 70, "Input",ExpressionUUID->"42142c1f-b395-4b6c-b291-cb961cde7888"],
-Cell[38110, 898, 114943, 2183, 70, "Output",ExpressionUUID->"9b341503-8cac-49a3-8362-d2a779a4611e"]
+Cell[23919, 615, 14076, 279, 70, "Input",ExpressionUUID->"74a1b829-b069-4f5b-ad4a-b9b41087863d"],
+Cell[37998, 896, 114943, 2183, 70, "Output",ExpressionUUID->"a632c2b1-aeba-4578-b24f-63539a6c3624"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[153102, 3087, 131, 0, 70, "Subsection",ExpressionUUID->"d6bd02a0-c6c6-44d5-9474-c5a4af41c18e"],
-Cell[153236, 3089, 627, 9, 70, "Text",ExpressionUUID->"7abe465e-7fe6-4a37-a99c-05647b64d11d"],
-Cell[153866, 3100, 465, 7, 70, "Text",ExpressionUUID->"63b6c4f8-919d-43d8-9387-463c6e1608ce"],
+Cell[152990, 3085, 131, 0, 70, "Subsection",ExpressionUUID->"f1c28fe8-5912-46db-ace5-039d0aecd913"],
+Cell[153124, 3087, 627, 9, 70, "Text",ExpressionUUID->"8ad118a6-68a1-4816-bfea-c7441ff4ba47"],
+Cell[153754, 3098, 465, 7, 70, "Text",ExpressionUUID->"31dfad81-f986-42fc-a338-903570eee487"],
 Cell[CellGroupData[{
-Cell[154356, 3111, 27695, 702, 70, "Input",ExpressionUUID->"190fa2aa-07ab-4713-926e-9465da2b4d71"],
-Cell[182054, 3815, 1060, 32, 70, "Output",ExpressionUUID->"a677d102-02e3-4c07-b511-aa2b4b4845e8"]
+Cell[154244, 3109, 27695, 702, 70, "Input",ExpressionUUID->"e0bed39c-9e76-41db-a217-b5820b03028f"],
+Cell[181942, 3813, 1060, 32, 70, "Output",ExpressionUUID->"67dad504-ae53-4507-9c9a-1d13714503c3"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[183163, 3853, 163, 2, 70, "Subsection",ExpressionUUID->"3d92a9ce-5948-4759-8a8b-e691df994095"],
-Cell[183329, 3857, 290, 4, 70, "Text",ExpressionUUID->"9f526689-5146-4ca4-9e2f-c79d41447ff8"],
-Cell[183622, 3863, 274, 4, 70, "Text",ExpressionUUID->"a8857d1a-a1e6-4558-8411-dcf2ef5f207a"],
-Cell[183899, 3869, 294, 4, 70, "Text",ExpressionUUID->"ffe79a75-c3e1-4a06-ba68-6e098de0c726"],
-Cell[184196, 3875, 594, 8, 70, "Text",ExpressionUUID->"bb8a2019-9ec9-425a-a7a1-ec5f71583e1a"],
-Cell[184793, 3885, 466, 7, 70, "Text",ExpressionUUID->"d16a3009-a79f-4e9f-8866-98680c9c2a6c"],
-Cell[185262, 3894, 10804, 268, 70, "Input",ExpressionUUID->"b0aa79ba-7924-4a8b-a983-c1de02a7b626"]
+Cell[183051, 3851, 163, 2, 70, "Subsection",ExpressionUUID->"39f5be9e-549a-4b6a-a0ff-179549077e39"],
+Cell[183217, 3855, 290, 4, 70, "Text",ExpressionUUID->"e3619454-e629-4acf-bf77-9b388ea0806d"],
+Cell[183510, 3861, 274, 4, 70, "Text",ExpressionUUID->"04504964-8877-43e1-ab45-eff3731cc18c"],
+Cell[183787, 3867, 294, 4, 70, "Text",ExpressionUUID->"dfd007d3-97d7-4b8f-8142-2524d93af097"],
+Cell[184084, 3873, 594, 8, 70, "Text",ExpressionUUID->"0b3e1402-9440-4ed9-aaf4-bdf2da2f759a"],
+Cell[184681, 3883, 466, 7, 70, "Text",ExpressionUUID->"f64078f8-f5e3-427c-9877-521ad3d51191"],
+Cell[185150, 3892, 10804, 268, 70, "Input",ExpressionUUID->"84871be1-f8e4-4323-87eb-967e9d65da72"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[196115, 4168, 164, 3, 70, "Section",ExpressionUUID->"60ddc1e9-a43c-4e4c-99a2-a0dd5c72c3d9"],
-Cell[196282, 4173, 868, 12, 70, "Text",ExpressionUUID->"d5fd8339-55b5-4b09-ad2c-8ccc642b6776"],
-Cell[197153, 4187, 1173, 16, 70, "Text",ExpressionUUID->"ddc50644-237e-4cd7-9049-5f18d5a7e1f7"],
-Cell[198329, 4205, 923, 13, 70, "Text",ExpressionUUID->"4126f55b-d053-41dc-a481-e11b6ffe1f69"],
+Cell[196003, 4166, 164, 3, 70, "Section",ExpressionUUID->"f01c3d14-74df-4b5a-9b7b-3ad4903ecbba"],
+Cell[196170, 4171, 868, 12, 70, "Text",ExpressionUUID->"72c6cded-83b7-4445-bb1b-7386a8384db2"],
+Cell[197041, 4185, 1173, 16, 70, "Text",ExpressionUUID->"212b0c1b-be62-495e-831d-253bf692a605"],
+Cell[198217, 4203, 909, 13, 70, "Text",ExpressionUUID->"348b9f6b-35a5-4a93-b69d-5c9c2534ff9b"],
 Cell[CellGroupData[{
-Cell[199277, 4222, 12888, 331, 70, "Input",ExpressionUUID->"565ce678-8ebb-4295-97af-a73ed3ee9e35"],
-Cell[212168, 4555, 173802, 3429, 70, "Output",ExpressionUUID->"9b821df5-9622-4677-85fc-a974872349ff"]
+Cell[199151, 4220, 12888, 331, 70, "Input",ExpressionUUID->"dfaacb7d-f3e4-40be-b77e-c59eb28416dc"],
+Cell[212042, 4553, 173802, 3429, 70, "Output",ExpressionUUID->"69006b98-4a97-4bf1-a3c0-4c2f21787fa4"]
 }, Open  ]],
-Cell[385985, 7987, 181, 3, 70, "Text",ExpressionUUID->"9d3b68da-d2c1-43db-a01e-0dcf58234f96"],
+Cell[385859, 7985, 181, 3, 70, "Text",ExpressionUUID->"6074a39a-9d45-4d3e-9acc-ac19c3d37f6c"],
 Cell[CellGroupData[{
-Cell[386191, 7994, 3600, 89, 70, "Input",ExpressionUUID->"d04ac10b-f37c-447a-b90c-97927abb1b3d"],
-Cell[389794, 8085, 348536, 7001, 70, "Output",ExpressionUUID->"5860ba41-c712-452c-a49b-db1093c7d19c"]
+Cell[386065, 7992, 3600, 89, 70, "Input",ExpressionUUID->"d673fd30-b6e7-46d8-a7ab-6dc7722eee50"],
+Cell[389668, 8083, 348536, 7001, 70, "Output",ExpressionUUID->"1ccb1664-f511-489e-99a3-1e2f56f502e3"]
 }, Open  ]],
-Cell[738345, 15089, 354, 5, 70, "Text",ExpressionUUID->"ed05964b-8769-4626-b329-dca58e59dfb9"],
+Cell[738219, 15087, 354, 5, 70, "Text",ExpressionUUID->"a9388206-645d-4e27-94f8-83a21eabf16c"],
 Cell[CellGroupData[{
-Cell[738724, 15098, 4890, 98, 70, "Input",ExpressionUUID->"0eca34d7-65c9-43b9-af10-1e536c9de89c"],
-Cell[743617, 15198, 183262, 3591, 70, "Output",ExpressionUUID->"79664317-eb28-4d25-bfaf-6046bb85a43d"]
+Cell[738598, 15096, 4890, 98, 70, "Input",ExpressionUUID->"7519c745-671c-4213-9f17-e5498f3ebb8c"],
+Cell[743491, 15196, 183262, 3591, 70, "Output",ExpressionUUID->"3f5a12fd-d070-46e0-b46c-89c6d99c2462"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[926928, 18795, 155, 2, 70, "Section",ExpressionUUID->"ccce04df-57e4-4e20-9ac5-027698df6344"],
-Cell[927086, 18799, 406, 6, 70, "Text",ExpressionUUID->"88860004-2b24-4634-9938-10c4b208b03c"],
+Cell[926802, 18793, 155, 2, 70, "Section",ExpressionUUID->"4f59c8cf-880e-488c-aaf6-784adbd681ee"],
+Cell[926960, 18797, 406, 6, 70, "Text",ExpressionUUID->"c6c4ec33-d8c1-4e9a-ab5b-54b26f3ecb3b"],
 Cell[CellGroupData[{
-Cell[927517, 18809, 3689, 78, 70, "Input",ExpressionUUID->"3579d267-7794-4230-9faf-984134bc5369"],
-Cell[931209, 18889, 164828, 3273, 70, "Output",ExpressionUUID->"a458f78a-72b5-4a71-b93a-789c682b34a2"]
+Cell[927391, 18807, 3689, 78, 70, "Input",ExpressionUUID->"59634cba-096e-4726-8eab-bd14f9d435ea"],
+Cell[931083, 18887, 164828, 3273, 70, "Output",ExpressionUUID->"57f0c70e-7607-4b4c-bc4f-cd8cf6e1432d"]
 }, Open  ]],
-Cell[1096052, 22165, 363, 5, 70, "Text",ExpressionUUID->"c8f7aea1-8009-4218-b011-32173704229f"],
+Cell[1095926, 22163, 363, 5, 70, "Text",ExpressionUUID->"79763d3c-896b-4a66-933d-03395f464618"],
 Cell[CellGroupData[{
-Cell[1096440, 22174, 5714, 138, 70, "Input",ExpressionUUID->"5066e6c7-661b-4efd-a805-7812814c0be8"],
-Cell[1102157, 22314, 87387, 1863, 70, "Output",ExpressionUUID->"6e6de387-80a1-4a02-a4b4-dae69e770396"]
+Cell[1096314, 22172, 5714, 138, 70, "Input",ExpressionUUID->"19628d4f-edfe-436d-ad52-8da4e37dcfb9"],
+Cell[1102031, 22312, 87387, 1863, 70, "Output",ExpressionUUID->"5c7c5ba3-b01c-4391-a64d-ed809bae51b7"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[1189593, 24183, 126, 0, 70, "Section",ExpressionUUID->"b3b04dd0-a2a7-45f9-a7de-7bccf117fafc"],
-Cell[1189722, 24185, 438, 6, 70, "Text",ExpressionUUID->"dc9c0292-2c8e-4246-8de2-bb574e3c0741"],
-Cell[1190163, 24193, 442, 6, 70, "Text",ExpressionUUID->"88576c2c-0176-4cca-a21b-53d1b3ef844c"],
+Cell[1189467, 24181, 126, 0, 70, "Section",ExpressionUUID->"efaba3ef-37f5-4bc3-a58c-f5ae9b5fd71c"],
+Cell[1189596, 24183, 438, 6, 70, "Text",ExpressionUUID->"95d4713a-b4ab-460e-99bb-232cb2899710"],
+Cell[1190037, 24191, 442, 6, 70, "Text",ExpressionUUID->"428dc211-bf22-450c-a7d1-8b1e16a35d00"],
 Cell[CellGroupData[{
-Cell[1190630, 24203, 5520, 131, 70, "Input",ExpressionUUID->"fe8aa84e-a80c-43d1-990a-e8677edaf266"],
-Cell[1196153, 24336, 420730, 8241, 70, "Output",ExpressionUUID->"14b50952-adc2-4b3c-ab1f-cc0f972be67b"]
+Cell[1190504, 24201, 5520, 131, 70, "Input",ExpressionUUID->"67c8baf1-82ce-4ed2-9738-ca615e271f89"],
+Cell[1196027, 24334, 420730, 8241, 70, "Output",ExpressionUUID->"8838b129-0084-4f7c-b303-e8097cc921f1"]
 }, Open  ]],
-Cell[1616898, 32580, 363, 5, 70, "Text",ExpressionUUID->"b3acf68f-3068-4e52-806a-cf67eeffc398"],
+Cell[1616772, 32578, 363, 5, 70, "Text",ExpressionUUID->"802c617d-c902-4998-8976-ef33bc95e6e8"],
 Cell[CellGroupData[{
-Cell[1617286, 32589, 4045, 98, 70, "Input",ExpressionUUID->"7e405e36-bb06-46a1-b782-f65594be612e"],
-Cell[1621334, 32689, 63749, 1450, 70, "Output",ExpressionUUID->"c12de361-128f-404d-afa9-4da3e313ad5e"]
+Cell[1617160, 32587, 4045, 98, 70, "Input",ExpressionUUID->"a311dbce-7483-4a8c-ac42-c961a877182c"],
+Cell[1621208, 32687, 63749, 1450, 70, "Output",ExpressionUUID->"660e8297-75e7-4630-aebf-872eb9cb4f60"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[1685120, 34144, 3478, 76, 70, "Input",ExpressionUUID->"5d07e207-900c-4588-8f21-1db9b1c0a612"],
-Cell[1688601, 34222, 176604, 3367, 70, "Output",ExpressionUUID->"087d78ec-bb14-4d93-8de4-82ab9af0986e"]
+Cell[1684994, 34142, 3478, 76, 70, "Input",ExpressionUUID->"49c70ab9-483c-4d91-990b-27e387842fc1"],
+Cell[1688475, 34220, 176361, 3360, 70, "Output",ExpressionUUID->"15d98588-c04e-451a-bb09-d1eaa50f848c"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[1865254, 37595, 113, 0, 70, "Section",ExpressionUUID->"9ba7f6d2-140b-4017-b568-60cbac36201e"],
-Cell[1865370, 37597, 471, 7, 70, "Text",ExpressionUUID->"54e22d85-22a7-489a-a2a4-149dfb4c21ae"],
+Cell[1864885, 37586, 113, 0, 70, "Section",ExpressionUUID->"daa24f52-6254-4124-b23c-409dd709eaa3"],
+Cell[1865001, 37588, 471, 7, 70, "Text",ExpressionUUID->"c2a61c94-b3a3-457f-a94c-6035c1be1554"],
 Cell[CellGroupData[{
-Cell[1865866, 37608, 2650, 59, 70, "Input",ExpressionUUID->"590a5ddd-444e-4a7f-b657-82283de039c7"],
-Cell[1868519, 37669, 128636, 2517, 70, "Output",ExpressionUUID->"5846d8d2-d67e-4fd0-a6d4-8b091e6c9a39"]
+Cell[1865497, 37599, 2650, 59, 70, "Input",ExpressionUUID->"55d27a3e-6d5e-400d-9233-abcff5cda341"],
+Cell[1868150, 37660, 128636, 2517, 70, "Output",ExpressionUUID->"d6598a48-1e82-4d2f-b00b-334d4934231f"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[1997192, 40191, 6916, 168, 70, "Input",ExpressionUUID->"86655b92-3283-4b1c-87f1-853e3d07d502"],
-Cell[2004111, 40361, 110130, 2358, 70, "Output",ExpressionUUID->"af98a29a-50b9-4804-ae0d-ef5f2d9735cf"]
+Cell[1996823, 40182, 6916, 168, 70, "Input",ExpressionUUID->"c1eeadc8-9db6-47cd-b431-826beb791d71"],
+Cell[2003742, 40352, 110130, 2358, 70, "Output",ExpressionUUID->"30053d68-7a89-4601-9c21-95e6a9311847"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[2114290, 42725, 102, 0, 70, "Section",ExpressionUUID->"be8dfd09-1375-492a-9976-0b1a3cc2b431"],
-Cell[2114395, 42727, 753, 10, 70, "Text",ExpressionUUID->"b5b776f3-f908-4bf7-8902-0f1f8d620cb9"],
+Cell[2113921, 42716, 102, 0, 70, "Section",ExpressionUUID->"a1f15050-41e1-4e96-95b1-a93a0ecbd7b3"],
+Cell[2114026, 42718, 753, 10, 70, "Text",ExpressionUUID->"eafe5513-9d3c-4df5-a05a-abab6c83f401"],
 Cell[CellGroupData[{
-Cell[2115173, 42741, 55182, 1293, 70, "Input",ExpressionUUID->"07398fe4-db0f-4ec1-8f38-6b4acfe9eab4"],
-Cell[2170358, 44036, 57007, 1127, 70, "Output",ExpressionUUID->"fa3b739b-89b2-4138-b97c-67a6d032b029"]
+Cell[2114804, 42732, 55182, 1293, 70, "Input",ExpressionUUID->"68c6deb6-aef7-475c-96b8-b14fa3981967"],
+Cell[2169989, 44027, 56945, 1125, 70, "Output",ExpressionUUID->"2e68049b-89dd-4f5d-8009-bc62f915c739"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[2227414, 45169, 157, 2, 70, "Section",ExpressionUUID->"21748956-701c-47aa-967d-53dbe6de7918"],
-Cell[2227574, 45173, 388, 6, 70, "Text",ExpressionUUID->"0f360efb-afbd-420c-a999-a579130c755f"],
+Cell[2226983, 45158, 157, 2, 70, "Section",ExpressionUUID->"e34c3ab5-62eb-44e4-bd3d-ffb58463938b"],
+Cell[2227143, 45162, 388, 6, 70, "Text",ExpressionUUID->"c11696a1-dc5b-4409-a5a3-517f2f97fce9"],
 Cell[CellGroupData[{
-Cell[2227987, 45183, 4983, 101, 70, "Input",ExpressionUUID->"a92b32e2-14cd-40e9-939e-4bcdcccbe986"],
-Cell[2232973, 45286, 185578, 3631, 70, "Output",ExpressionUUID->"56ebedb5-2b0b-42c4-9eaf-44d2f12f0e2d"]
+Cell[2227556, 45172, 4983, 101, 70, "Input",ExpressionUUID->"a840e198-cb42-436f-a54a-81cbfd27e729"],
+Cell[2232542, 45275, 185578, 3631, 70, "Output",ExpressionUUID->"84a32e53-2cf8-461b-a5af-60449ae44f41"]
 }, Open  ]],
-Cell[2418566, 48920, 148, 2, 70, "Text",ExpressionUUID->"305e7f58-76bc-4b23-abf9-2a3ef0c8861d"],
+Cell[2418135, 48909, 148, 2, 70, "Text",ExpressionUUID->"2aa5a3f9-8b35-4919-a62f-5f697d975054"],
 Cell[CellGroupData[{
-Cell[2418739, 48926, 804, 20, 70, "Input",ExpressionUUID->"05f79066-b46b-4c7f-a700-d61c7909adb3"],
-Cell[2419546, 48948, 55147, 1050, 70, "Output",ExpressionUUID->"274e45d6-abd2-4188-9c2f-e969a3e68126"]
+Cell[2418308, 48915, 804, 20, 70, "Input",ExpressionUUID->"55bb4de7-9c7c-4602-b800-26e2d429cfd7"],
+Cell[2419115, 48937, 55147, 1050, 70, "Output",ExpressionUUID->"9d8018ff-70ee-4dc5-af17-e201eb714e54"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[2474742, 50004, 95, 0, 70, "Section",ExpressionUUID->"9dd33e0d-f971-4336-9682-2855058e678a"],
-Cell[2474840, 50006, 387, 6, 70, "Text",ExpressionUUID->"70430f66-287f-4d4b-9e9c-749fd7ef335a"],
+Cell[2474311, 49993, 95, 0, 70, "Section",ExpressionUUID->"d21e1ec3-d50b-4a0a-8745-d7022b92e961"],
+Cell[2474409, 49995, 387, 6, 70, "Text",ExpressionUUID->"2e3a7686-c22a-4be0-a813-74f7ec72a54a"],
 Cell[CellGroupData[{
-Cell[2475252, 50016, 40102, 976, 70, "Input",ExpressionUUID->"6cc68cc2-4c53-404d-a150-3367dd5fe827"],
-Cell[2515357, 50994, 62330, 1052, 70, "Output",ExpressionUUID->"4414698c-ca8d-464b-85a1-6a6bda8c4ad4"]
+Cell[2474821, 50005, 40102, 976, 70, "Input",ExpressionUUID->"8736f6ce-3366-430b-9de9-85f52448632d"],
+Cell[2514926, 50983, 62297, 1050, 70, "Output",ExpressionUUID->"cbec1c5a-72c5-494e-a1d2-620b0e08c4c7"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[2577724, 52051, 643, 16, 70, "Input",ExpressionUUID->"bb17acf1-8c46-40ef-9ed6-91cbd7448955"],
-Cell[2578370, 52069, 62692, 1165, 70, "Output",ExpressionUUID->"1433327e-88f4-4197-b8d3-0fba1fa36f0d"]
+Cell[2577260, 52038, 643, 16, 70, "Input",ExpressionUUID->"443566f9-59b1-40d9-8ae6-d67f7c87b4ed"],
+Cell[2577906, 52056, 62692, 1165, 70, "Output",ExpressionUUID->"63731a88-1bfd-4b7f-b190-36bd7835d58e"]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]]

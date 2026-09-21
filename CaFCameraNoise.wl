@@ -33,7 +33,7 @@
 
 
 (* ::Text:: *)
-(*(ii) Magnification. With two lenses in an infinity relay the magnification is M = f2/f1 = 28.6/59.8 = 0.478, so the MOT image is demagnified rather than 1:1. This has no effect on the total number of collected photons, but it concentrates them onto 1/M^2 = 4.4 times fewer pixels, which lowers the integrated read-noise and dark-current floor by the same factor, raises the peak electrons per pixel (earlier saturation) and coarsens the object-space sampling to pixelPitch/M.*)
+(*(ii) Magnification. With two lenses in an infinity relay the magnification is M = f2/f1 = 28.6/59.8 = 0.478, so the MOT image is demagnified. This has no effect on the total number of collected photons, but it concentrates them onto 1/M^2 = 4.4 times fewer pixels, which lowers the integrated read-noise and dark-current floor by the same factor, raises the peak electrons per pixel (earlier saturation) and coarsens the object-space sampling to pixelPitch/M.*)
 
 
 (* ::Input:: *)
@@ -53,7 +53,7 @@ magnification = imagingLensEFL/collectorEFL;   (* infinity relay: M = f2/f1 = 0.
 solidAngleCollection[d0_, r_] := 2 Pi (1 - d0/Sqrt[d0^2 + r^2]);
 solidAngleMOT = solidAngleCollection[workingDistance, limitingApertureRadius];
 geometricEfficiency = solidAngleMOT/(4 Pi);
-geometricEfficiencyUnvignetted = solidAngleCollection[workingDistance, collectorRadius]/(4 Pi);   (* 2 inch collector with no downstream clipping: the 0.0559 quoted in the brief *)
+geometricEfficiencyUnvignetted = solidAngleCollection[workingDistance, collectorRadius]/(4 Pi);   (* 2 inch collector with no downstream clipping, for reference *)
 vignettingFactor = geometricEfficiency/geometricEfficiencyUnvignetted;
 numericalApertureCollection = Sin[ArcTan[limitingApertureRadius/workingDistance]];
 imagingLensFNumber = imagingLensEFL/(2 imagingLensRadius);
@@ -74,7 +74,7 @@ Grid[{{"Limiting aperture", Row[{limitingElement, ", radius ", limitingApertureR
 
 
 (* ::Text:: *)
-(*The cloud is a 2D Gaussian of measured FWHM 2.8 mm in object space at the MOT (sigma = FWHM/(2 Sqrt[2 Log[2]]) = 1.189 mm, 1/e^2 diameter 4.76 mm). The FWHM is the primary input here and supersedes the 1.5 mm 1/e^2 diameter of the original specification. The integration aperture is a disc of radius 2 sigma = 2.378 mm at the MOT, which contains a fraction 1 - Exp[-2] = 86.5% of the cloud fluorescence. Signal photon numbers quoted in this notebook (nSig) are the photons arriving on the sensor inside that aperture. All cloud geometry is kept in object space and pixels are projected back through the magnification: a superpixel of physical pitch b x pixelPitch on the chip covers b x pixelPitch / M at the MOT. Background and dark electrons, in contrast, are properties of the physical sensor pixel and do not scale with M.*)
+(*The cloud is a 2D Gaussian of measured FWHM 2.8 mm in object space at the MOT (sigma = FWHM/(2 Sqrt[2 Log[2]]) = 1.189 mm, 1/e^2 diameter 4.76 mm). The FWHM is the primary input; sigma and the 1/e^2 radius derive from it. The integration aperture is a disc of radius 2 sigma = 2.378 mm at the MOT, which contains a fraction 1 - Exp[-2] = 86.5% of the cloud fluorescence. Signal photon numbers quoted in this notebook (nSig) are the photons arriving on the sensor inside that aperture. All cloud geometry is kept in object space and pixels are projected back through the magnification: a superpixel of physical pitch b x pixelPitch on the chip covers b x pixelPitch / M at the MOT. Background and dark electrons, in contrast, are properties of the physical sensor pixel and do not scale with M.*)
 
 
 (* ::Text:: *)
@@ -126,7 +126,7 @@ Grid[{{"Cloud FWHM (mm)", cloudFWHM},
 
 
 (* ::Text:: *)
-(*ReadNoiseRMS is the primary (lowest-noise) readout mode used for the benchmark curves; ReadNoiseModes lists all quoted modes. FullWell values for the Kinetix and iXon are nominal data-sheet figures not contained in the brief and are only used for the saturation warning on the dashboard. The two Andor CB2 models were added from the CB2 brochure (cb2-specifications.pdf): QE at 606 nm was read off the published curves (62% High Res, 68% High Speed), and HardwareBinLimit = 2 encodes their on-chip 2x2 charge-domain binning.*)
+(*ReadNoiseRMS is the primary (lowest-noise) readout mode used for the benchmark curves; ReadNoiseModes lists all quoted modes. QE values are at 606 nm, read off each vendor's published curve where no number is quoted at that wavelength (the CB2 curves give 62% High Res and 68% High Speed). FullWell is only used for the saturation markers. HardwareBinLimit encodes how binning is implemented: 1 = digital only, Infinity = on-chip for every bin (CCD serial register, EMCCD), 2 = on-chip 2x2 charge-domain binning with digital summing beyond (Andor CB2).*)
 
 
 (* ::Input:: *)
@@ -162,7 +162,7 @@ cameraDatabase = <|
      "ReadNoiseModes" -> <|"Sensitivity" -> 1.2|>,
      "DarkCurrent" -> 0.15, "FullWell" -> 15000,
      "BinningType" -> "Software", "HardwareBinLimit" -> 1, "SupportedBins" -> {1, 2, 4, 8}, "ENF" -> 1.0,
-     "Notes" -> "FullWell is a nominal data-sheet value (not in the brief)."|>,
+     "Notes" -> "FullWell is a nominal data-sheet value."|>,
   "Andor iXon Ultra 888 (EMCCD Benchmark)" -> <|
      "ShortName" -> "iXon Ultra 888", "Type" -> "EMCCD",
      "PixelsX" -> 1024, "PixelsY" -> 1024, "PixelPitch" -> 13.0,
@@ -170,7 +170,7 @@ cameraDatabase = <|
      "ReadNoiseModes" -> <|"EM Gain 300x" -> 0.15|>,
      "DarkCurrent" -> 0.0005, "FullWell" -> 80000,
      "BinningType" -> "Hardware", "HardwareBinLimit" -> Infinity, "SupportedBins" -> {1, 2, 4, 8}, "ENF" -> Sqrt[2.],
-     "Notes" -> "Effective read noise 0.15 e- at EM gain 300; excess noise factor Sqrt[2]. FullWell is the conventional-mode value (not in the brief)."|>,
+     "Notes" -> "Effective read noise 0.15 e- at EM gain 300; excess noise factor Sqrt[2]. FullWell is the conventional-mode value."|>,
   "Andor CB2 High Res (24.5 MP BSI sCMOS)" -> <|
      "ShortName" -> "CB2 High Res", "Type" -> "sCMOS (BSI, global shutter)",
      "PixelsX" -> 5328, "PixelsY" -> 4608, "PixelPitch" -> 2.74,
@@ -375,7 +375,7 @@ snrEstimators[cam_Association, binFactor_, nMol_] :=
 
 
 (* ::Text:: *)
-(*Caveat on the laser-scatter background: the brief specifies it as a flux per sensor pixel area, and it is implemented that way, so the scatter collected inside the aperture scales as M^2 and demagnification reduces it. That is the right model for stray light reaching the sensor from outside the imaged region. If instead the scatter is light from the imaged MOT region (chamber walls, viewports in the field of view), it is imaged like the signal, its total inside the aperture is independent of M, and only the read-noise term benefits from demagnification. The distinction does not affect the read-noise-limited cameras (for the Zelux the scatter is 3.6% of the noise-floor variance) but it matters for the ORCA-Quest 2 and the iXon, which are scatter-dominated. Measure the background per pixel per frame to settle it.*)
+(*Caveat on the laser-scatter background: it is specified as a flux per sensor pixel area and implemented that way, so the scatter collected inside the aperture scales as M^2 and demagnification reduces it. That is the right model for stray light reaching the sensor from outside the imaged region. If instead the scatter is light from the imaged MOT region (chamber walls, viewports in the field of view), it is imaged like the signal, its total inside the aperture is independent of M, and only the read-noise term benefits from demagnification. The distinction does not affect the read-noise-limited cameras (for the Zelux the scatter is 3.6% of the noise-floor variance) but it matters for the ORCA-Quest 2 and the iXon, which are scatter-dominated. Measure the background per pixel per frame to settle it.*)
 
 
 (* ::Input:: *)

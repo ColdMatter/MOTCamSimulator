@@ -37,7 +37,7 @@ All inputs are top-level parameters in `CaFCameraNoise.wl`, Section 1. The ones 
 | `viewportClearRadius` | 1.1 | Infinity | set to the viewport semi-diameter if it clips before the lenses |
 | `workingPointMolecules` | 3 | 1e4 | the molecule number used in the summary tables |
 
-After editing, regenerate (step 5). The verification suite will tell you if a change broke an assumption (e.g. the synthetic frame no longer holds the reference annulus).
+After editing, regenerate (step 5). The verification suite will tell you if a change violates an assumption (e.g. the synthetic frame is too small to hold the reference annulus).
 
 ## 4. Add a camera
 
