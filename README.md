@@ -14,6 +14,8 @@ Analytical noise model, benchmark plots and an interactive dashboard for imaging
 
 ## Regenerating
 
+Quick start for users is in [HOWTO.md](HOWTO.md). The one-liner is `./regenerate.sh`, which locates `wolframscript` and runs the generator.
+
 `wolframscript` is not on `$PATH` on this machine; use the Wolfram.app binary directly
 (`/Applications/Mathematica.app` reports a licence problem, `/Applications/Wolfram.app` 14.3 is licensed):
 
