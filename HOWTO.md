@@ -67,7 +67,7 @@ Read the QE off the vendor's curve at 606 nm — the headline "peak QE" is usual
 ./regenerate.sh
 ```
 
-or, explicitly, `wolframscript -file GenerateCaFComparisonNotebook.wls`. On this Mac `wolframscript` is not on the PATH; the script looks in `/Applications/Wolfram.app` and `/Applications/Mathematica.app` for you. Takes ~30 s and produces:
+or, explicitly, `wolframscript -file GenerateCaFComparisonNotebook.wls`. If `wolframscript` is not on your PATH, the script also looks inside `/Applications/Wolfram.app`, `/Applications/Mathematica.app` and the usual Linux install locations. Takes ~30 s and produces:
 
 - `CaF_MOT_Camera_Comparison.nb` — rebuilt from scratch (never edit it by hand)
 - `CaF_MOT_Camera_Thresholds.csv`
